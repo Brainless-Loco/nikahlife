@@ -7,7 +7,7 @@ import Link from "next/link";
 import {
   Eye,
   EyeOff,
-  Heart,
+  // Heart,
   Mail,
   Lock,
   ArrowRight,
@@ -22,6 +22,9 @@ import { toast } from "sonner";
 import { getCookie } from "@/utils/getToken";
 import authService from "@/utils/authService";
 import { useAuth } from "../context/auth-context";
+import Image from "next/image";
+import logo from "../../../../public/logo/nikahlife.png";
+// import logoWhite from "../../../../public/logo/nikahlife-white.png";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -145,17 +148,34 @@ export default function LoginPage() {
           {/* Logo */}
           <Link href={"/"}>
             <div className="flex items-center justify-center lg:justify-start space-x-3">
-              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg">
-                <Heart className="h-6 w-6 text-white fill-white" />
+              
+              <div >
+                <Image
+                  width={200}
+                  height={200}
+                  src={logo}
+                  alt="nikahlife"
+                  className="block"
+                />
               </div>
-              <div className="flex flex-col">
+
+              {/* <div >
+                <Image
+                  width={200}
+                  height={200}
+                  src={logoWhite}
+                  alt="nikahlife"
+                  className="hidden dark:block"
+                />
+              </div> */}
+              {/* <div className="flex flex-col">
                 <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
                   Nikah
                 </span>
                 <span className="text-sm text-emerald-500/70 font-medium -mt-1">
                   Find Your Perfect Match
                 </span>
-              </div>
+              </div> */}
             </div>
           </Link>
 
@@ -180,12 +200,21 @@ export default function LoginPage() {
             <CardHeader className="space-y-4 pb-8">
               {/* Mobile Logo */}
               <div className="flex lg:hidden items-center justify-center space-x-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                {/* <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
                   <Heart className="h-5 w-5 text-white fill-white" />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
                   Nikah
-                </span>
+                </span> */}
+                  <div >
+                    <Image
+                      width={200}
+                      height={200}
+                      src={logo}
+                      alt="nikahlife"
+                      className="block"
+                    />
+                  </div>
               </div>
 
               <div className="text-center space-y-2">

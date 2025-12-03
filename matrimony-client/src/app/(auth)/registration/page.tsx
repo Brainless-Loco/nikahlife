@@ -42,6 +42,9 @@ import { ButtonLoader } from "@/components/common/Loader";
 import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
+import Image from "next/image";
+import logo from "../../../../public/logo/nikahlife.png";
+// import logoWhite from "../../../../public/logo/nikahlife-white.png";
 
 enum UserRole {
   USER = "user",
@@ -263,12 +266,22 @@ export default function RegistrationPage() {
             <CardHeader className="space-y-4 pb-8">
               {/* Mobile Logo */}
               <div className="flex lg:hidden items-center justify-center space-x-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                {/* <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
                   <Heart className="h-5 w-5 text-white fill-white" />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
                   Nikah
-                </span>
+                </span> */}
+
+                <div >
+                  <Image
+                    width={200}
+                    height={200}
+                    src={logo}
+                    alt="nikahlife"
+                    className="block"
+                  />
+                </div>
               </div>
 
               {/* Step Indicator */}
