@@ -1,0 +1,47 @@
+export const filterTranslation = {
+  en: {
+    title: "Find Your Perfect Match",
+    description:
+      "Use our advanced filters to discover compatible profiles that match your preferences and values",
+    division: "Division",
+    district: "District",
+    upazila: "Upazila",
+    lookingFor: "Looking For",
+    male: "Male",
+    female: "Female",
+    maritalStatus: "Marital Status",
+    naverMarried: "Naver Married",
+    divorced: "Divorced",
+    married: "Married",
+    search: "Search",
+    searching: "Searching",
+    selectDivision: "Select Division",
+    selectDistrict: "Select District",
+    selectUpazila: "Select Upazila",
+    selectMaritalStatus: "Select Marital Status",
+    universitySelectPlaceholder: "Select University"
+  },
+
+  bn: {
+    title: "আপনার মিল খুঁজে বের করুন",
+    description:
+      "আমাদের স্মার্ট ফিল্টার ব্যবহার করে আপনার পছন্দ আর মানসিকতার সাথে মেলে এমন উপযুক্ত প্রোফাইল খুঁজে নিন।",
+    division: "বিভাগ",
+    district: "জেলা",
+    upazila: "উপজেলা",
+    lookingFor: "আমি খুজছি",
+    male: "পাত্র",
+    female: "পাত্রী",
+    maritalStatus: "বৈবাহিক অবস্থা",
+    naverMarried: "অবিবাহিত",
+    divorced: "ডিভোর্সড",
+    married: "বিবাহিত",
+    search: "বায়োডাটা খুজুন",
+    searching: "খোজা হচ্ছে",
+    selectDivision: "বিভাগ সিলেক্ট করুন",
+    selectDistrict: "জেলা সিলেক্ট করুন",
+    selectUpazila: "উপজেলা সিলেক্ট করুন",
+    selectMaritalStatus: "বৈবাহিক অবস্থা সিলেক্ট করুন",
+    universitySelectPlaceholder: "বিশ্ববিদ্যালয় সিলেক্ট করুন",
+  },
+};

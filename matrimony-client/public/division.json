@@ -1,0 +1,50 @@
+[
+  {
+    "division_id": "1",
+    "divisionName": "Chattagram",
+    "bnDivisionName": "চট্টগ্রাম",
+    "url": "www.chittagongdiv.gov.bd"
+  },
+  {
+    "division_id": "2",
+    "divisionName": "Rajshahi",
+    "bnDivisionName": "রাজশাহী",
+    "url": "www.rajshahidiv.gov.bd"
+  },
+  {
+    "division_id": "3",
+    "divisionName": "Khulna",
+    "bnDivisionName": "খুলনা",
+    "url": "www.khulnadiv.gov.bd"
+  },
+  {
+    "division_id": "4",
+    "divisionName": "Barisal",
+    "bnDivisionName": "বরিশাল",
+    "url": "www.barisaldiv.gov.bd"
+  },
+  {
+    "division_id": "5",
+    "divisionName": "Sylhet",
+    "bnDivisionName": "সিলেট",
+    "url": "www.sylhetdiv.gov.bd"
+  },
+  {
+    "division_id": "6",
+    "divisionName": "Dhaka",
+    "bnDivisionName": "ঢাকা",
+    "url": "www.dhakadiv.gov.bd"
+  },
+  {
+    "division_id": "7",
+    "divisionName": "Rangpur",
+    "bnDivisionName": "রংপুর",
+    "url": "www.rangpurdiv.gov.bd"
+  },
+  {
+    "division_id": "8",
+    "divisionName": "Mymensingh",
+    "bnDivisionName": "ময়মনসিংহ",
+    "url": "www.mymensinghdiv.gov.bd"
+  }
+]

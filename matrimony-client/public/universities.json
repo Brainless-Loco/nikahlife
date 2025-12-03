@@ -1,0 +1,646 @@
+[
+  {
+    "name_english": "University of Dhaka",
+    "name_bangla": "ঢাকা বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "University of Rajshahi",
+    "name_bangla": "রাজশাহী বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangladesh University of Engineering and Technology",
+    "name_bangla": "বাংলাদেশ প্রকৌশল বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Jahangirnagar University",
+    "name_bangla": "জাহাঙ্গীরনগর বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "University of Chittagong",
+    "name_bangla": "চট্টগ্রাম বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "BRAC University",
+    "name_bangla": "ব্র্যাক বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Daffodil International University",
+    "name_bangla": "ড্যাফোডিল ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "North South University",
+    "name_bangla": "নর্থ সাউথ ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Shahjalal University of Science and Technology",
+    "name_bangla": "শাহজালাল বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "American International University-Bangladesh",
+    "name_bangla": "আমেরিকান ইন্টারন্যাশনাল ইউনিভার্সিটি-বাংলাদেশ"
+  },
+  {
+    "name_english": "Khulna University",
+    "name_bangla": "খুলনা বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "United International University",
+    "name_bangla": "ইউনাইটেড ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Rajshahi University of Engineering and Technology",
+    "name_bangla": "রাজশাহী প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangladesh Medical University",
+    "name_bangla": "বঙ্গবন্ধু শেখ মুজিব মেডিকেল বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Khulna University of Engineering and Technology",
+    "name_bangla": "খুলনা প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Jagannath University",
+    "name_bangla": "জগন্নাথ বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "East West University",
+    "name_bangla": "ইস্ট ওয়েস্ট ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Chittagong University of Engineering and Technology",
+    "name_bangla": "চট্টগ্রাম প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangladesh Agricultural University",
+    "name_bangla": "বাংলাদেশ কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Asian University for Women",
+    "name_bangla": "এশিয়ান ইউনিভার্সিটি ফর উইমেন"
+  },
+  {
+    "name_english": "Ahsanullah University of Science and Technology",
+    "name_bangla": "আহসানউল্লাহ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangladesh University of Professionals",
+    "name_bangla": "বাংলাদেশ ইউনিভার্সিটি অব প্রফেশনালস"
+  },
+  {
+    "name_english": "Islamic University of Technology",
+    "name_bangla": "ইসলামিক ইউনিভার্সিটি অব টেকনোলজি"
+  },
+  {
+    "name_english": "University of Liberal Arts Bangladesh",
+    "name_bangla": "ইউনিভার্সিটি অব লিবারেল আর্টস বাংলাদেশ"
+  },
+  {
+    "name_english": "Bangladesh University of Business and Technology",
+    "name_bangla": "বাংলাদেশ ইউনিভার্সিটি অব বিজনেস অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "International University of Business Agriculture and Technology",
+    "name_bangla": "ইন্টারন্যাশনাল ইউনিভার্সিটি অব বিজনেস এগ্রিকালচার অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Southeast University, Bangladesh",
+    "name_bangla": "সাউথইস্ট ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "Islamic Arabic University",
+    "name_bangla": "ইসলামি আরবি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Islamic University",
+    "name_bangla": "ইসলামী বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "University of Asia Pacific",
+    "name_bangla": "ইউনিভার্সিটি অব এশিয়া প্যাসিফিক"
+  },
+  {
+    "name_english": "Dhaka University of Engineering and Technology",
+    "name_bangla": "ঢাকা প্রকৌশল ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Noakhali Science and Technology University",
+    "name_bangla": "নোয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "International Islamic University, Chittagong",
+    "name_bangla": "ইন্টারন্যাশনাল ইসলামিক ইউনিভার্সিটি চট্টগ্রাম"
+  },
+  {
+    "name_english": "Gazipur Agricultural University",
+    "name_bangla": "গাজীপুর কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Hajee Mohammad Danesh Science and Technology University",
+    "name_bangla": "হাজী মোহাম্মদ দানেশ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Jashore University of Science and Technology",
+    "name_bangla": "যশোর বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Stamford University Bangladesh",
+    "name_bangla": "স্ট্যামফোর্ড ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "Bangladesh University of Textiles",
+    "name_bangla": "বাংলাদেশ টেক্সটাইল বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Green University of Bangladesh",
+    "name_bangla": "গ্রিন ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Sher-e-Bangla Agricultural University",
+    "name_bangla": "শের-এ-বাংলা কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Patuakhali Science and Technology University",
+    "name_bangla": "পটুয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Comilla University",
+    "name_bangla": "কুমিল্লা বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Jatiya Kabi Kazi Nazrul Islam University",
+    "name_bangla": "জাতীয় কবি কাজী নজরুল ইসলাম বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Chittagong Veterinary and Animal Sciences University",
+    "name_bangla": "চট্টগ্রাম ভেটেরিনারি ও অ্যানিম্যাল সায়েন্সেস বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Independent University, Bangladesh",
+    "name_bangla": "ইন্ডিপেন্ডেন্ট ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "Bangladesh Maritime University",
+    "name_bangla": "বঙ্গবন্ধু শেখ মুজিবুর রহমান মেরিটাইম বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Uttara University",
+    "name_bangla": "উত্তরা ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "BGMEA University of Fashion and Technology",
+    "name_bangla": "বিজিএমইএ ইউনিভার্সিটি অব ফ্যাশন অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Mawlana Bhashani Science and Technology University",
+    "name_bangla": "মাওলানা ভাসানী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "University of Barisal",
+    "name_bangla": "বরিশাল বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Sylhet Agricultural University",
+    "name_bangla": "সিলেট কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Begum Rokeya University, Rangpur",
+    "name_bangla": "বেগম রোকেয়া বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "World University of Bangladesh",
+    "name_bangla": "ওয়ার্ল্ড ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Dhaka International University",
+    "name_bangla": "ঢাকা ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Varendra University",
+    "name_bangla": "ভারেন্দ্র ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Pabna Science and Technology University",
+    "name_bangla": "পাবনা বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Leading University",
+    "name_bangla": "লিডিং ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Northern University of Bangladesh",
+    "name_bangla": "নর্দার্ন ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "Chittagong Independent University",
+    "name_bangla": "চট্টগ্রাম ইন্ডিপেন্ডেন্ট ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "State University of Bangladesh",
+    "name_bangla": "স্টেট ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Gopalganj Science and Technology University",
+    "name_bangla": "গোপালগঞ্জ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Primeasia University",
+    "name_bangla": "প্রাইমএশিয়া ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Sonargaon University",
+    "name_bangla": "সোনারগাঁও ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "ASA University Bangladesh",
+    "name_bangla": "আসা ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "University of Science and Technology Chittagong",
+    "name_bangla": "ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি চট্টগ্রাম"
+  },
+  {
+    "name_english": "Asian University of Bangladesh",
+    "name_bangla": "এশিয়ান ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "City University",
+    "name_bangla": "সিটি ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "Eastern University, Bangladesh",
+    "name_bangla": "ইস্টার্ন ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "University of Information Technology and Sciences",
+    "name_bangla": "ইউনিভার্সিটি অব ইনফরমেশন টেকনোলজি অ্যান্ড সায়েন্সেস"
+  },
+  {
+    "name_english": "Manarat International University",
+    "name_bangla": "মানারাত ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "East Delta University",
+    "name_bangla": "ইস্ট ডেল্টা ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Canadian University of Bangladesh",
+    "name_bangla": "কানাডা ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "European University of Bangladesh",
+    "name_bangla": "ইউরোপিয়ান ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Bangladesh University",
+    "name_bangla": "বাংলাদেশ ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Presidency University, Bangladesh",
+    "name_bangla": "প্রেসিডেন্সি ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Prime University",
+    "name_bangla": "প্রাইম ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Notre Dame University Bangladesh",
+    "name_bangla": "নটর ডেম ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "Metropolitan University",
+    "name_bangla": "মেট্রোপলিটন ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Shanto Mariam University of Creative Technology",
+    "name_bangla": "শান্ত-মারিয়াম ইউনিভার্সিটি অব ক্রিয়েটিভ টেকনোলজি"
+  },
+  {
+    "name_english": "Rajshahi Medical University",
+    "name_bangla": "রাজশাহী মেডিকেল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Gono Bishwabidyalay",
+    "name_bangla": "গণ বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Southern University Bangladesh",
+    "name_bangla": "সাউদার্ন ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "University of Development Alternative",
+    "name_bangla": "ইউনিভার্সিটি অব ডেভেলপমেন্ট অল্টারনেটিভ"
+  },
+  {
+    "name_english": "Bangladesh Digital University",
+    "name_bangla": "বঙ্গবন্ধু ডিজিটাল বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangladesh University of Health Sciences",
+    "name_bangla": "বাংলাদেশ ইউনিভার্সিটি অব হেলথ সায়েন্সেস"
+  },
+  {
+    "name_english": "Port City International University",
+    "name_bangla": "পোর্ট সিটি ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Premier University",
+    "name_bangla": "প্রিমিয়ার ইউনিভার্সিটি, চট্টগ্রাম"
+  },
+  {
+    "name_english": "Khwaja Yunus Ali University",
+    "name_bangla": "খাজা ইউনুস আলী ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "BGC Trust University Bangladesh",
+    "name_bangla": "বিজিসি ট্রাস্ট ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "North Western University",
+    "name_bangla": "নর্থ ওয়েস্টার্ন ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Bangladesh Islami University",
+    "name_bangla": "বাংলাদেশ ইসলামি ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Victoria University of Bangladesh",
+    "name_bangla": "ভিক্টোরিয়া ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Fareast International University",
+    "name_bangla": "ফারইস্ট ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Aviation and Aerospace University, Bangladesh",
+    "name_bangla": "বঙ্গবন্ধু শেখ মুজিবুর রহমান বিমান ও মহাকাশ বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Rabindra University, Bangladesh",
+    "name_bangla": "রবীন্দ্র বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Sylhet International University",
+    "name_bangla": "সিলেট ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Khulna Khan Bahadur Ahsanullah University",
+    "name_bangla": "খুলনা খান বাহাদুর আহসানউল্লাহ ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Atish Dipankar University of Science and Technology",
+    "name_bangla": "অতীশ দীপঙ্কর বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "University of South Asia, Bangladesh",
+    "name_bangla": "ইউনিভার্সিটি অব সাউথ এশিয়া, বাংলাদেশ"
+  },
+  {
+    "name_english": "Chittagong Medical University",
+    "name_bangla": "চট্টগ্রাম মেডিকেল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "The Millenium University",
+    "name_bangla": "মিলেনিয়াম ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Khulna Medical University",
+    "name_bangla": "খুলনা মেডিকেল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Royal University of Dhaka",
+    "name_bangla": "রয়েল ইউনিভার্সিটি অব ঢাকা"
+  },
+  {
+    "name_english": "IBAIS University",
+    "name_bangla": "আইবিএআইএস বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Kishoreganj University",
+    "name_bangla": "কিশোরগঞ্জ ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Jamalpur Science and Technology University",
+    "name_bangla": "জামালপুর বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "North East University Bangladesh",
+    "name_bangla": "নর্থ ইস্ট ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "Ranada Prasad Shaha University",
+    "name_bangla": "রানাদা প্রসাদ শাহা ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Sheikh Fazilatunnesa Mujib University",
+    "name_bangla": "শেখ ফজিলাতুননেসা মুজিব ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "International Standard University",
+    "name_bangla": "ইন্টারন্যাশনাল স্ট্যান্ডার্ড ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Hamdard University of Bangladesh",
+    "name_bangla": "হামদর্দ ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "Pirojpur Science and Technology University",
+    "name_bangla": "পিরোজপুর বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Central Women's University",
+    "name_bangla": "সেন্ট্রাল উইমেন্স ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "University of Global Village",
+    "name_bangla": "ইউনিভার্সিটি অব গ্লোবাল ভিলেজ"
+  },
+  {
+    "name_english": "Khulna Agricultural University",
+    "name_bangla": "খুলনা কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "The International University of Scholars",
+    "name_bangla": "দি ইন্টারন্যাশনাল ইউনিভার্সিটি অব স্কলার্স"
+  },
+  {
+    "name_english": "Feni University",
+    "name_bangla": "ফেনী ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Hobiganj Agricultural University",
+    "name_bangla": "হবিগঞ্জ কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Rangamati Science and Technology University",
+    "name_bangla": "রাঙ্গামাটি বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "German University Bangladesh",
+    "name_bangla": "জার্মান ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "Netrokona University",
+    "name_bangla": "নেত্রকোণা ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Queens University",
+    "name_bangla": "কুইন্স ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "The People's University of Bangladesh",
+    "name_bangla": "পিপলস ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Ahsania Mission University of Science and Technology",
+    "name_bangla": "আহছানিয়া মিশন ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "First Capital University of Bangladesh",
+    "name_bangla": "ফার্স্ট ক্যাপিটাল ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Chandpur Science and Technology University",
+    "name_bangla": "চাঁদপুর বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "University of Skill Enrichment and Technology",
+    "name_bangla": "ইউনিভার্সিটি অব স্কিল এনরিচমেন্ট অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Anwer Khan Modern University",
+    "name_bangla": "আনোয়ার খান মডার্ন ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Northern University of Business and Technology, Khulna",
+    "name_bangla": "নর্দার্ন ইউনিভার্সিটি অব বিজনেস অ্যান্ড টেকনোলজি খুলনা"
+  },
+  {
+    "name_english": "University of Creative Technology Chittagong",
+    "name_bangla": "ইউনিভার্সিটি অব ক্রিয়েটিভ টেকনোলজি চট্টগ্রাম"
+  },
+  {
+    "name_english": "Rabindra Maitree University",
+    "name_bangla": "রবীন্দ্র মৈত্রী ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Pundra University of Science and Technology",
+    "name_bangla": "পুন্ড্র ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Kurigram Agricultural University",
+    "name_bangla": "কুড়িগ্রাম কৃষি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Rajshahi Science and Technology University",
+    "name_bangla": "রাজশাহী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangamata Sheikh Fazilatunnesa Mujib Medical University",
+    "name_bangla": "বঙ্গমাতা শেখ ফজিলাতুননেসা মুজিব মেডিকেল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "University of Brahmanbaria",
+    "name_bangla": "ইউনিভার্সিটি অব ব্রাহ্মণবাড়িয়া"
+  },
+  {
+    "name_english": "CCN University of Science and Technology",
+    "name_bangla": "সিসিএন ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "North Bengal International University",
+    "name_bangla": "নর্থ বেঙ্গল ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Sunamganj Science and Technology University",
+    "name_bangla": "সুনামগঞ্জ বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Exim Bank Agricultural University of Bangladesh",
+    "name_bangla": "এক্সিম ব্যাংক এগ্রিকালচারাল ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Central University of Science and Technology",
+    "name_bangla": "সেন্ট্রাল ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Ishakha International University, Bangladesh",
+    "name_bangla": "ইশখা ইন্টারন্যাশনাল ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "Chattogram BGMEA University of Fashion and Technology",
+    "name_bangla": "চট্টগ্রাম বিজিএমইএ ইউনিভার্সিটি অব ফ্যাশন অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "ZNRF University of Management Sciences",
+    "name_bangla": "জেডএনআরএফ ইউনিভার্সিটি অব ম্যানেজমেন্ট সাইন্সেস"
+  },
+  {
+    "name_english": "Times University of Bangladesh",
+    "name_bangla": "টাইমস ইউনিভার্সিটি, বাংলাদেশ"
+  },
+  {
+    "name_english": "N.P.I. University of Bangladesh",
+    "name_bangla": "এনপিআই ইউনিভার্সিটি অব বাংলাদেশ"
+  },
+  {
+    "name_english": "Dr. Momtaz Begum University of Science and Technology",
+    "name_bangla": "ডক্টর মমতাজ বেগম ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Trust University, Barishal",
+    "name_bangla": "ট্রাস্ট ইউনিভার্সিটি, বরিশাল"
+  },
+  {
+    "name_english": "Tagore University of Creative Arts",
+    "name_bangla": "ঠাকুর ইউনিভার্সিটি অব ক্রিয়েটিভ আর্টস"
+  },
+  {
+    "name_english": "Bandarban University",
+    "name_bangla": "বান্দরবান ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Cox's Bazar International University",
+    "name_bangla": "কক্সবাজার ইন্টারন্যাশনাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Teesta University",
+    "name_bangla": "তিস্তা ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Global University Bangladesh",
+    "name_bangla": "গ্লোবাল ইউনিভার্সিটি বাংলাদেশ"
+  },
+  {
+    "name_english": "Z.H. Sikder University of Science and Technology",
+    "name_bangla": "জেড.এইচ. সিকদার ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "Britannia University",
+    "name_bangla": "ব্রিটানিয়া ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "International Islami University of Science and Technology",
+    "name_bangla": "ইন্টারন্যাশনাল ইসলামি ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি"
+  },
+  {
+    "name_english": "R.T.M. Al-Kabir Technical University",
+    "name_bangla": "আর.টি.এম. আল-কবীর টেকনিক্যাল ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Meherpur University",
+    "name_bangla": "মেহেরপুর ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "Naogaon University",
+    "name_bangla": "নওগাঁ ইউনিভার্সিটি"
+  },
+  {
+    "name_english": "National University, Bangladesh",
+    "name_bangla": "জাতীয় বিশ্ববিদ্যালয়"
+  },
+  {
+    "name_english": "Bangladesh Open University",
+    "name_bangla": "বাংলাদেশ উন্মুক্ত বিশ্ববিদ্যালয়"
+  }
+]
