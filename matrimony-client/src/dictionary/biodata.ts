@@ -202,6 +202,11 @@ export const biodataTranslation = {
       email: "Email",
       phone: "Mobile",
     },
+    actionButtons: {
+      viewContactInfo: "View Contact Information",
+      upgradePremium: "Upgrade to Premium",
+      upgradeVip: "Upgrade to VIP",
+    },
     biodataBtn: "Biodata",
     createBiodata: "Create Biodata",
     sendInterest: "Send Interest",
@@ -416,8 +421,13 @@ export const biodataTranslation = {
       email: "ইমেইল",
       phone: "মোবাইল",
     },
-    biodataBtn: "বায়োডাটা",
-    createBiodata: "আপনার বায়োডাটা তৈরি করুন",
+    actionButtons: {
+      viewContactInfo: "যোগাযোগ তথ্য দেখুন",
+      upgradePremium: "প্রিমিয়ামে আপগ্রেড করুন",
+      upgradeVip: "ভিআইপিতে আপগ্রেড করুন",
+    },
+    biodataBtn: "বায়োডাটা",
+    createBiodata: "আপনার বায়োডাটা তৈরি করুন",
     sendInterest: "আগ্রহ পাঠান",
     singleBiodata: {
       nationality: "জাতীয়তা",

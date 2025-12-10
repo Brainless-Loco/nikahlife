@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 import { MarriageInfo, StepProps } from "@/types/biodataForm";
 import { useLanguage } from "@/hooks/use-language";
 import { biodataTranslation } from "@/dictionary/biodata";
@@ -77,29 +78,13 @@ export default function MarriageStep({ data, updateData }: StepProps) {
 
       <div className="space-y-3">
         <Label htmlFor="reason">{t.marriageRelatedInformation?.reason} *</Label>
-        <Select
+        <Textarea
+          id="reason"
           value={marriage.reason}
-          onValueChange={(value) => handleChange("reason", value)}
-        >
-          <SelectTrigger className="border-emerald-200 dark:border-emerald-700 w-full">
-            <SelectValue placeholder="Select reason" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value={t.marriageRelatedInformation?.personal}>
-              {t.marriageRelatedInformation?.personal}
-            </SelectItem>
-            <SelectItem value={t.marriageRelatedInformation?.family}>
-              {t.marriageRelatedInformation?.family}
-            </SelectItem>
-            {/* <SelectItem value="religious">{t.marriageRelatedInformation?.}</SelectItem> */}
-            <SelectItem value={t.marriageRelatedInformation?.social}>
-              {t.marriageRelatedInformation?.social}
-            </SelectItem>
-            <SelectItem value={t.marriageRelatedInformation?.other}>
-              {t.marriageRelatedInformation?.other}
-            </SelectItem>
-          </SelectContent>
-        </Select>
+          onChange={(e) => handleChange("reason", e.target.value)}
+          placeholder={language === "bn" ? "বিয়ে করতে চাওয়ার কারণ লিখুন..." : "Write your reason for marriage..."}
+          className="border-emerald-200 dark:border-emerald-700 w-full min-h-[100px] resize-none"
+        />
       </div>
 
       {user?.gender === "female" && (

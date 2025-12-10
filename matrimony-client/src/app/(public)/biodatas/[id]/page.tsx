@@ -1,12 +1,12 @@
+"use client";
+
 import SingleBiodata from "@/components/features/public/Biodata/SingleBiodata/SingleBiodata";
 import React from "react";
+import { useParams } from "next/navigation";
 
-type BioDataPageProps = {
-  params: Promise<{ id: string }>;
-};
-
-const BioData = async ({ params }: BioDataPageProps) => {
-  const { id } = await params;
+const BioData = () => {
+  const params = useParams();
+  const id = params.id as string;
 
   return (
     <div>

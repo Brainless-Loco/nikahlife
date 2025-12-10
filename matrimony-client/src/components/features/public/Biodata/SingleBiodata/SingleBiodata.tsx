@@ -21,6 +21,8 @@ import {
   Users,
   Shield,
   Star,
+  Eye,
+  Crown,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BiodataType } from "@/types/publicBiodata";
@@ -231,6 +233,8 @@ export default function Biodata({ id }: { id: string }) {
               )}
               {ButtonLoader ? "Sending..." : t.sendInterest}
             </Button>
+
+            {/* Shortlist and Ignore Buttons */}
             <div className="flex justify-between mt-6 w-full space-x-4">
               {/* Shortlist Button */}
               <div className="w-full">
@@ -876,49 +880,58 @@ export default function Biodata({ id }: { id: string }) {
               </div>
             )} */}
 
-            {token ? (
-              user?.subscriptionType === "premium" ||
-              user?.subscriptionType === "vip" ? (
-                // Premium or VIP
-                <div className="space-y-2">
+            {/* Three Action Buttons */}
+            <div className="mt-6 space-y-3">
+              {/* View Contact Information Button */}
+              {token && user ? (
+                <>
                   <Button
                     onClick={() =>
                       handleViewContact(biodata?.userId?._id || "")
                     }
-                    className="bg-emerald-500 hover:bg-emerald-600 text-white w-full"
+                    disabled={
+                      !["premium", "vip"].includes(user?.subscriptionType || "")
+                    }
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-700 dark:to-blue-800 dark:hover:from-blue-800 dark:hover:to-blue-900 text-white cursor-pointer transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    View Contact
+                    <Eye className="w-4 h-4 mr-2" />
+                    {t.actionButtons?.viewContactInfo}
                   </Button>
-                </div>
-              ) : user?.subscriptionType === "free" ? (
-                // Free user -> Payment page
-                <div>
-                  <Link href={"/payment?plan=premium"}>
-                    <Button className="bg-emerald-500 hover:bg-emerald-600 text-white w-full cursor-pointer">
-                      Upgrade to Premium
-                    </Button>
-                  </Link>
-                </div>
+
+                  {/* Upgrade Buttons Row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* Upgrade to Premium Button */}
+                    <Link href="/payment?plan=premium" className="w-full">
+                      <Button className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 dark:from-amber-600 dark:to-amber-700 dark:hover:from-amber-700 dark:hover:to-amber-800 text-white cursor-pointer transition-all duration-200 shadow-md hover:shadow-lg">
+                        <Star className="w-4 h-4 mr-2" />
+                        <span className="text-sm font-semibold">
+                          {t.actionButtons?.upgradePremium}
+                        </span>
+                      </Button>
+                    </Link>
+
+                    {/* Upgrade to VIP Button */}
+                    <Link href="/payment?plan=vip" className="w-full">
+                      <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 dark:from-purple-700 dark:to-purple-800 dark:hover:from-purple-800 dark:hover:to-purple-900 text-white cursor-pointer transition-all duration-200 shadow-md hover:shadow-lg">
+                        <Crown className="w-4 h-4 mr-2" />
+                        <span className="text-sm font-semibold">
+                          {t.actionButtons?.upgradeVip}
+                        </span>
+                      </Button>
+                    </Link>
+                  </div>
+                </>
               ) : (
-                // No subscription -> Registration
+                // If not logged in
                 <div>
-                  <Link href={"/payment?plan=premium"}>
-                    <Button className="bg-emerald-500 hover:bg-emerald-600 text-white w-full cursor-pointer">
+                  <Link href={"/registration"}>
+                    <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer">
                       {t.createBiodata}
                     </Button>
                   </Link>
                 </div>
-              )
-            ) : (
-              // If not logged in at all
-              <div>
-                <Link href={"/registration"}>
-                  <Button className="bg-emerald-500 hover:bg-emerald-600 text-white w-full cursor-pointer">
-                    {t.createBiodata}
-                  </Button>
-                </Link>
-              </div>
-            )}
+              )}
+            </div>
 
             {/* Modal */}
             <ViewContact
