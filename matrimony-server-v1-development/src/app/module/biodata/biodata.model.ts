@@ -116,6 +116,7 @@ const biodataSchema = new Schema<IBiodata>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     biodataNumber: { type: String, unique: true, sparse: true },
+    isVisible: { type: Boolean, default: true },
     phone: { type: String, ref: "User" },
     name: { type: String, required: true },
     gender: { type: String, enum: ["male", "female"], required: true },

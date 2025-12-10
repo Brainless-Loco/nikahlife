@@ -14,6 +14,7 @@ import OccupationStep from "../Biodata/BiodataSteps/occupationStep";
 import MarriageStep from "../Biodata/BiodataSteps/marriageStep";
 import PreferenceStep from "../Biodata/BiodataSteps/preferenceStep";
 import PledgeStep from "../Biodata/BiodataSteps/pledgeStep";
+import VisibilityStep from "../Biodata/BiodataSteps/visibilityStep";
 import { useAuth } from "@/app/(auth)/context/auth-context";
 import axios from "axios";
 import { toast } from "sonner";
@@ -34,7 +35,8 @@ const steps = [
   { id: 6, title: "Marriage", component: MarriageStep },
   { id: 7, title: "Preference", component: PreferenceStep },
   { id: 8, title: "Contact Info", component: ContactInfo },
-  { id: 9, title: "Pledge", component: PledgeStep },
+  { id: 9, title: "Visibility", component: VisibilityStep },
+  { id: 10, title: "Pledge", component: PledgeStep },
 ];
 
 export default function BiodataForm() {
@@ -118,6 +120,7 @@ export default function BiodataForm() {
             ? "male"
             : "female",
         age: Number(formData.personal?.age),
+        isVisible: formData.isVisible !== false,
         personal: {
           ...formData.personal,
           maintainMahram: formData.personal?.maintainMahram,

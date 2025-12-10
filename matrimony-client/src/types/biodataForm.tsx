@@ -114,6 +114,7 @@ export interface BiodataFormData {
   contactInfo?: ContactInfo;
   isContactInfoValid?: boolean;
   pledge?: PledgeInfo;
+  isVisible?: boolean;
 }
 
 export interface StepProps {

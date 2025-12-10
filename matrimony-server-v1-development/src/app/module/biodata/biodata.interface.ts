@@ -111,6 +111,7 @@ export interface IBiodata {
   _id?: string | Types.ObjectId;
   userId: Types.ObjectId;
   biodataNumber?: string;
+  isVisible?: boolean;
 
   // Personal
   name: string;
