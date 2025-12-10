@@ -12,6 +12,8 @@ import type { ApiResponse, OTPArray } from "@/types/otp"
 export default function OTPVerify() {
   // State
   const [email, setEmail] = useState<string>("")
+  const [phone, setPhone] = useState<string>("")
+  const [verificationMethod, setVerificationMethod] = useState<"email" | "phone">("email")
   const [emailOtp, setEmailOtp] = useState<OTPArray>(["", "", "", "", "", ""])
   const [isVerifyingEmail, setIsVerifyingEmail] = useState<boolean>(false)
   const [isSendingOtp, setIsSendingOtp] = useState<boolean>(false)
@@ -32,13 +34,15 @@ export default function OTPVerify() {
   useEffect(() => {
     const loadUserData = () => {
       try {
-        // Load user email
+        // Load user info
         const userInfoData = localStorage.getItem("userInfo")
         console.log("Loading userInfo from localStorage:", userInfoData)
         if (userInfoData) {
           const userInfo = JSON.parse(userInfoData)
           setEmail(userInfo.email || "")
-          console.log("[v0] Loaded email:", userInfo.email)
+          setPhone(userInfo.phone || "")
+          setVerificationMethod(userInfo.verificationMethod || "email")
+          console.log("[v0] Loaded email:", userInfo.email, "phone:", userInfo.phone, "method:", userInfo.verificationMethod)
         }
 
         // Load user ID
@@ -72,23 +76,28 @@ export default function OTPVerify() {
   }, [countdown])
 
   useEffect(() => {
-    if (isDataLoaded && email && !emailVerified && !initialOtpSent) {
-      console.log("[v0] Data loaded, sending initial OTP to:", email)
+    if (isDataLoaded && (email || phone) && !emailVerified && !initialOtpSent) {
+      const target = verificationMethod === "email" ? email : phone
+      console.log(`[v0] Data loaded, sending initial OTP to ${verificationMethod}:`, target)
       sendInitialOtp()
     }
-  }, [isDataLoaded, email, emailVerified, initialOtpSent])
+  }, [isDataLoaded, email, phone, emailVerified, initialOtpSent, verificationMethod]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // API Calls
-  const sendOtpToEmail = async (emailAddress: string): Promise<ApiResponse> => {
+  const sendOtpToContact = async (target: string, method: "email" | "phone" = "email"): Promise<ApiResponse> => {
     try {
-      if (!emailAddress) {
-        throw new Error("Email address is required")
+      if (!target) {
+        throw new Error(`${method === "email" ? "Email" : "Phone number"} is required`)
       }
 
-      console.log("[v0] Sending OTP to:", emailAddress)
+      console.log(`[v0] Sending OTP to ${method}:`, target)
+      const payload = method === "email" 
+        ? { email: target }
+        : { phone: target }
+      
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/send-otp`,
-        { email: emailAddress },
+        payload,
         { withCredentials: true },
       )
       console.log("[v0] OTP send response:", response.data)
@@ -105,14 +114,20 @@ export default function OTPVerify() {
       if (!otpCode || otpCode.length !== 6) {
         throw new Error("Please enter a valid 6-digit OTP code")
       }
-      if (!email) {
-        throw new Error("Email address is missing")
+      
+      const target = verificationMethod === "email" ? email : phone
+      if (!target) {
+        throw new Error(`${verificationMethod === "email" ? "Email" : "Phone number"} is missing`)
       }
 
-      console.log("[v0] Verifying OTP:", otpCode, "for email:", email)
+      console.log(`[v0] Verifying OTP:`, otpCode, `for ${verificationMethod}:`, target)
+      const payload = verificationMethod === "email"
+        ? { email: target, otp: otpCode }
+        : { phone: target, otp: otpCode }
+      
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/verify-otp`,
-        { email, otp: otpCode },
+        payload,
         { withCredentials: true },
       )
       console.log("[v0] OTP verify response:", response.data)
@@ -225,8 +240,9 @@ export default function OTPVerify() {
   const handleEmailResend = async () => {
     if (countdown > 0) return
 
-    if (!email) {
-      setError("Email address not found. Please refresh the page and try again.")
+    const target = verificationMethod === "email" ? email : phone
+    if (!target) {
+      setError(`${verificationMethod === "email" ? "Email" : "Phone number"} not found. Please refresh the page and try again.`)
       return
     }
 
@@ -238,8 +254,8 @@ export default function OTPVerify() {
     setUserVerified(false)
 
     try {
-      await sendOtpToEmail(email)
-      setSuccess("New OTP sent to your email!")
+      await sendOtpToContact(target, verificationMethod)
+      setSuccess(`New OTP sent to your ${verificationMethod}!`)
       setCountdown(60)
       setTimeout(() => {
         emailInputRefs.current[0]?.focus()
@@ -256,8 +272,9 @@ export default function OTPVerify() {
   }
 
   const sendInitialOtp = async () => {
-    if (!email) {
-      setError("Email address not found. Please refresh the page and try again.")
+    const target = verificationMethod === "email" ? email : phone
+    if (!target) {
+      setError(`${verificationMethod === "email" ? "Email" : "Phone number"} not found. Please refresh the page and try again.`)
       return
     }
 
@@ -266,8 +283,8 @@ export default function OTPVerify() {
     setError("")
 
     try {
-      await sendOtpToEmail(email)
-      setSuccess("OTP sent to your email!")
+      await sendOtpToContact(target, verificationMethod)
+      setSuccess(`OTP sent to your ${verificationMethod}!`)
       setCountdown(60)
       setTimeout(() => {
         emailInputRefs.current[0]?.focus()
@@ -390,10 +407,15 @@ export default function OTPVerify() {
               </div>
 
               <div>
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">Verify Your Email</h1>
+                <h1 className="text-3xl font-bold text-gray-800 mb-2">
+                  Verify Your {verificationMethod === "email" ? "Email" : "Phone"}
+                </h1>
                 <p className="text-gray-600 max-w-md mx-auto">
-                  We&apos;ve sent a verification code to your email address. Please enter the 6-digit code below to
+                  We&apos;ve sent a verification code to your {verificationMethod === "email" ? "email address" : "phone number"}. Please enter the 6-digit code below to
                   verify your account.
+                </p>
+                <p className="text-sm text-gray-500 mt-2">
+                  Sent to: {verificationMethod === "email" ? email : phone}
                 </p>
               </div>
             </div>

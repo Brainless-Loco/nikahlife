@@ -61,7 +61,8 @@ const registrationSchema = z
     email: z
       .string()
       .email("Please enter a valid email address")
-      .min(1, "Email is required"),
+      .optional()
+      .or(z.literal("")),
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")
@@ -77,7 +78,9 @@ const registrationSchema = z
       .regex(
         /^(?:\+?88)?01[3-9]\d{8}$/,
         "Please enter a valid Bangladeshi phone number (e.g. +8801712345678 or 01712345678)"
-      ),
+      )
+      .optional()
+      .or(z.literal("")),
     gender: z.enum(["male", "female"], {
       required_error: "Please select your gender",
     }),
@@ -92,6 +95,10 @@ const registrationSchema = z
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],
+  })
+  .refine((data) => data.email || data.phone, {
+    message: "Please provide either an email address or a phone number",
+    path: ["email"],
   });
 
 type RegistrationFormData = z.infer<typeof registrationSchema>;
@@ -120,7 +127,6 @@ export default function RegistrationPage() {
   });
 
   const onSubmit = async (data: RegistrationFormData) => {
-    // To123456789
     setIsSubmitting(true);
     try {
       console.log(process.env.NEXT_PUBLIC_BASE_URL)
@@ -130,8 +136,8 @@ export default function RegistrationPage() {
         role: data.role,
         gender: data.gender,
         password: data.password,
-        phone: data.phone,
-        email: data.email,
+        phone: data.phone || undefined,
+        email: data.email || undefined,
         name: data.name,
       });
 
@@ -146,7 +152,11 @@ export default function RegistrationPage() {
       );
       localStorage.setItem(
         "userInfo",
-        JSON.stringify({ email: data.email, phone: data.phone })
+        JSON.stringify({ 
+          email: data.email || null, 
+          phone: data.phone || null,
+          verificationMethod: data.email ? "email" : "phone"
+        })
       );
 
       router.push("verify-otp");
@@ -161,8 +171,8 @@ export default function RegistrationPage() {
   const nextStep = async () => {
     const fieldsToValidate =
       currentStep === 1
-        ? ["name", "email"]
-        : ["password", "confirmPassword", "phone", "gender"];
+        ? ["name", "email", "phone"]
+        : ["password", "confirmPassword", "phone", "email", "gender"];
 
     const isValid = await form.trigger(
       fieldsToValidate as (keyof RegistrationFormData)[]
@@ -390,7 +400,7 @@ export default function RegistrationPage() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-gray-700">
-                              Email Address
+                              Email Address (or use phone number below)
                             </FormLabel>
                             <FormControl>
                               <div className="relative">
@@ -506,7 +516,7 @@ export default function RegistrationPage() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-gray-700">
-                              Phone Number
+                              Phone Number (or use email above)
                             </FormLabel>
                             <FormControl>
                               <div className="relative">
@@ -514,7 +524,7 @@ export default function RegistrationPage() {
                                 <Input
                                   {...field}
                                   type="tel"
-                                  placeholder="+1 (555) 123-4567"
+                                  placeholder="+880 1712 345 678"
                                   className="pl-10 py-3 border-2 text-gray-900 border-gray-200 focus:border-emerald-400 focus:ring-emerald-400 placeholder:text-gray-400 rounded-xl transition-all duration-300"
                                 />
                               </div>

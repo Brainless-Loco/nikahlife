@@ -36,6 +36,8 @@ export default function Navbar() {
     { title: t.findMatch, href: "/biodatas" },
     { title: t.successStories, href: "/success-stories" },
     { title: t.about, href: "/about" },
+    { title: t.faq, href: "/faq" },
+    { title: t.guide, href: "/guide" },
     { title: t.contact, href: "/contact" },
   ];
 
