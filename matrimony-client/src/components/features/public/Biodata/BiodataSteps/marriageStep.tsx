@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -19,7 +20,8 @@ import { useAuth } from "@/app/(auth)/context/auth-context";
 export default function MarriageStep({ data, updateData }: StepProps) {
   const [marriage, setMarriage] = useState<MarriageInfo>({
     guardiansAgree: false,
-    studyContinue: "not_decided",
+    studyContinue: "",
+    workContinue: "",
     reason: "",
     jobStatus: "",
     ...data.marriage,
@@ -49,32 +51,35 @@ export default function MarriageStep({ data, updateData }: StepProps) {
         </Label>
       </div>
 
-      <div className="space-y-3">
-        <Label htmlFor="studyContinue">
-          {t.marriageRelatedInformation?.studyContinue}
-        </Label>
-        <Select
-          value={marriage.studyContinue || "not_decided"}
-          onValueChange={(value) =>
-            handleChange("studyContinue", value === "" ? "not_decided" : value)
-          }
-        >
-          <SelectTrigger className="border-emerald-200 dark:border-emerald-700 w-full">
-            <SelectValue placeholder="Select an option" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="true">
-              {t.marriageRelatedInformation?.yes}
-            </SelectItem>
-            <SelectItem value="false">
-              {t.marriageRelatedInformation?.no}
-            </SelectItem>
-            <SelectItem value="not_decided">
-              {t.marriageRelatedInformation?.notDecide}
-            </SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      {user?.gender === "female" && (
+        <div className="space-y-3">
+          <Label htmlFor="studyContinue">
+            {t.marriageRelatedInformation?.studyContinue}
+          </Label>
+          <Input
+            id="studyContinue"
+            value={marriage.studyContinue || ""}
+            onChange={(e) => handleChange("studyContinue", e.target.value)}
+            className="border-emerald-200 dark:border-emerald-700"
+          />
+        </div>
+      )}
+
+      {user?.gender === "female" && (
+        <div className="space-y-3">
+          <Label htmlFor="workContinue">
+            {language === "bn"
+              ? "বিয়ের পর চাকরি করবেন/চালিয়ে যাবেন?"
+              : "Will you work/continue working after marriage?"}
+          </Label>
+          <Input
+            id="workContinue"
+            value={marriage.workContinue || ""}
+            onChange={(e) => handleChange("workContinue", e.target.value)}
+            className="border-emerald-200 dark:border-emerald-700"
+          />
+        </div>
+      )}
 
       <div className="space-y-3">
         <Label htmlFor="reason">{t.marriageRelatedInformation?.reason} *</Label>

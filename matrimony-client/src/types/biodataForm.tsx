@@ -74,7 +74,8 @@ export interface OccupationInfo {
 
 export interface MarriageInfo {
   guardiansAgree: boolean;
-  studyContinue: string;
+  studyContinue?: string; // For brides only
+  workContinue?: string;  // For brides only
   reason: string;
   jobStatus: string;
 }

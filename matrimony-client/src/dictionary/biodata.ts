@@ -118,6 +118,7 @@ export const biodataTranslation = {
     marriageRelatedInformation: {
       guardiansAgree: "Do your guardians agree to your marriage?",
       studyContinue: "Will you continue your studies after marriage?",
+      workContinue: "Will you work/continue working after marriage?",
       yes: "Yes",
       no: "No",
       notDecide: "Not decided yet",
@@ -336,11 +337,12 @@ export const biodataTranslation = {
     },
     marriageRelatedInformation: {
       guardiansAgree: "আপনার অভিভাবকরা কি বিয়েতে রাজি?",
-      studyContinue: "বিয়ের পর কি আপনি পড়াশোনা চালিয়ে যাবেন?",
+      studyContinue: "বিয়ের পর কি আপনি পড়াশোনা চালিয়ে যাবেন?",
+      workContinue: "বিয়ের পর চাকরি করবেন/চালিয়ে যাবেন?",
       yes: "হ্যাঁ",
       notDecide: "এখনই বলতে পারছি না",
       no: "না",
-      jobContinue: "বিয়ের পর আপনি কি চাকরী করতে চান",
+      jobContinue: "বিয়ের পর আপনি কি চাকরী করতে চান",
       reason: "বিয়ের কারণ",
       personal: "ব্যক্তিগত",
       family: "পরিবার",
