@@ -115,6 +115,7 @@ import { string } from "zod";
 const biodataSchema = new Schema<IBiodata>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    biodataNumber: { type: String, unique: true, sparse: true },
     phone: { type: String, ref: "User" },
     name: { type: String, required: true },
     gender: { type: String, enum: ["male", "female"], required: true },

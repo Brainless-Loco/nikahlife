@@ -178,6 +178,31 @@ export default function Biodata({ id }: { id: string }) {
                   )}
 
                 <div className="space-y-1">
+                  {biodata?.biodataNumber && (
+                    <div className="flex border-b border-gray-200 dark:border-gray-700 py-3">
+                      <div className="w-2/5 font-medium text-gray-600 dark:text-gray-300 pr-4 flex-shrink-0">
+                        Biodata No.
+                      </div>
+                      <div className="flex-1 text-right text-gray-800 dark:text-gray-100 break-words leading-relaxed font-semibold">
+                        {biodata.biodataNumber}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {biodata?.createdAt && (
+                    <div className="flex border-b border-gray-200 dark:border-gray-700 py-3">
+                      <div className="w-2/5 font-medium text-gray-600 dark:text-gray-300 pr-4 flex-shrink-0">
+                        Upload Date
+                      </div>
+                      <div className="flex-1 text-right text-gray-800 dark:text-gray-100 break-words leading-relaxed">
+                        {new Date(biodata.createdAt).toLocaleDateString(language === "bn" ? "bn-BD" : "en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </div>
+                    </div>
+                  )}
                   <div className="flex border-b border-gray-200 dark:border-gray-700 py-3">
                     <div className="w-2/5 font-medium text-gray-600 dark:text-gray-300 pr-4 flex-shrink-0">
                       {t.singleBiodata?.typesOfBiodata}

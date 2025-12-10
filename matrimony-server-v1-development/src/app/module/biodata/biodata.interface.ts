@@ -110,6 +110,7 @@ export enum ApprovalStatus {
 export interface IBiodata {
   _id?: string | Types.ObjectId;
   userId: Types.ObjectId;
+  biodataNumber?: string;
 
   // Personal
   name: string;

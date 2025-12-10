@@ -6,6 +6,16 @@ import { checkHasBiodata, createUserTokens } from "../../../utils/userToken";
 import { Ignore } from "../ignoreList/ignoreList.model";
 import Trash from "../trash/trash.model";
 
+function generateBiodataNumber(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const dateString = `${year}${month}${day}`;
+  const randomNumber = Math.floor(Math.random() * 1000000).toString().padStart(6, "0");
+  return `BD-${dateString}-${randomNumber}`;
+}
+
 const createBiodata = async (data: IBiodata, userId: string) => {
   const user = await User.findById(userId);
   if (!user) {
@@ -18,8 +28,11 @@ const createBiodata = async (data: IBiodata, userId: string) => {
     throw new Error("Biodata already exists for this user.");
   }
 
+  // Generate unique biodata number
+  const biodataNumber = generateBiodataNumber();
+
   // Create new biodata
-  const biodata = new Biodata({ ...data, userId });
+  const biodata = new Biodata({ ...data, userId, biodataNumber });
   await biodata.save();
 
   // Generate access token

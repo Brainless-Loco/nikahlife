@@ -103,6 +103,7 @@ type UserId = {
 export type BiodataType = {
  address: Address;
  age: number;
+ biodataNumber?: string;
  createdAt: string;
  education: Education;
  family: Family;
