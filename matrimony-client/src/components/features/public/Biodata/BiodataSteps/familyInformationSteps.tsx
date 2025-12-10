@@ -637,14 +637,17 @@ export default function FamilyStep({ data, updateData }: StepProps) {
             <SelectValue placeholder="Select financial status" />
           </SelectTrigger>
           <SelectContent>
+            <SelectItem value={t.familyInformation?.poor}>
+              {t.familyInformation?.poor}
+            </SelectItem>
             <SelectItem value={t.familyInformation?.lower}>
               {t.familyInformation?.lower}
             </SelectItem>
-            <SelectItem value={t.familyInformation?.upper}>
-              {t.familyInformation?.upper}
-            </SelectItem>
             <SelectItem value={t.familyInformation?.middle}>
               {t.familyInformation?.middle}
+            </SelectItem>
+            <SelectItem value={t.familyInformation?.upper}>
+              {t.familyInformation?.upper}
             </SelectItem>
             <SelectItem value={t.familyInformation?.rich}>
               {t.familyInformation?.rich}
