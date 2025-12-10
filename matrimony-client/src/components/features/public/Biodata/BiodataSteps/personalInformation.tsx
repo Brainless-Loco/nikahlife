@@ -55,7 +55,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="name"
             value={personal.name}
             onChange={(e) => handleChange("name", e.target.value)}
-            placeholder={t.personalInformation?.name}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>
@@ -88,7 +87,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="dress"
             value={personal.dress}
             onChange={(e) => handleChange("dress", e.target.value)}
-            placeholder={t.personalInformation?.dressUp}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>
@@ -101,7 +99,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="prayerHabit"
             value={personal.prayerHabit}
             onChange={(e) => handleChange("prayerHabit", e.target.value)}
-            placeholder={t.personalInformation?.pray5times}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>
@@ -204,7 +201,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="maintainMahram"
             value={personal.maintainMahram}
             onChange={(e) => handleChange("maintainMahram", e.target.value)}
-            placeholder={t.personalInformation?.mahram}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>
@@ -217,7 +213,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="quranReading"
             value={personal.quranReading}
             onChange={(e) => handleChange("quranReading", e.target.value)}
-            placeholder={t.personalInformation?.quranReading}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>
@@ -232,7 +227,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="entertainment"
             value={personal.entertainment}
             onChange={(e) => handleChange("entertainment", e.target.value)}
-            placeholder={t.personalInformation?.entertainment}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>
@@ -245,7 +239,6 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             id="healthIssues"
             value={personal.healthIssues}
             onChange={(e) => handleChange("healthIssues", e.target.value)}
-            placeholder={t.personalInformation?.diseases}
             className="border-emerald-200 dark:border-emerald-700"
           />
         </div>

@@ -472,7 +472,6 @@ export default function FamilyStep({ data, updateData }: StepProps) {
             id="fatherProfession"
             value={family.fatherProfession}
             onChange={(e) => handleChange("fatherProfession", e.target.value)}
-            placeholder={t.familyInformation?.fatherProfession}
             className="border-emerald-200 dark:border-emerald-700"
             disabled={!family.fatherAlive}
           />
@@ -486,7 +485,6 @@ export default function FamilyStep({ data, updateData }: StepProps) {
             id="motherProfession"
             value={family.motherProfession}
             onChange={(e) => handleChange("motherProfession", e.target.value)}
-            placeholder={t.familyInformation?.motherProfession}
             className="border-emerald-200 dark:border-emerald-700"
             disabled={!family.motherAlive}
           />
@@ -612,7 +610,6 @@ export default function FamilyStep({ data, updateData }: StepProps) {
               <Input
                 value={profession}
                 onChange={(e) => updateUncleProfession(index, e.target.value)}
-                placeholder={t.familyInformation?.uncleProfession}
                 className="border-emerald-200 dark:border-emerald-700"
               />
               <Button
