@@ -39,6 +39,112 @@ const steps = [
   { id: 10, title: "Pledge", component: PledgeStep },
 ];
 
+// Validation function for each step
+const validateStep = (stepId: number, formData: BiodataFormData): string[] => {
+  const errors: string[] = [];
+
+  switch (stepId) {
+    case 1: // Personal Info
+      if (!formData.personal?.name?.trim()) {
+        errors.push("Name is required");
+      }
+      if (!formData.personal?.gender?.trim()) {
+        errors.push("Gender is required");
+      }
+      if (!formData.personal?.age?.toString().trim()) {
+        errors.push("Age is required");
+      }
+      if (!formData.personal?.fiqh?.trim()) {
+        errors.push("Fiqh is required");
+      }
+      break;
+
+    case 2: // Address
+      if (!formData.address?.permanent?.division?.trim()) {
+        errors.push("Permanent Division is required");
+      }
+      if (!formData.address?.permanent?.district?.trim()) {
+        errors.push("Permanent District is required");
+      }
+      if (!formData.address?.present?.division?.trim()) {
+        errors.push("Present Division is required");
+      }
+      if (!formData.address?.present?.district?.trim()) {
+        errors.push("Present District is required");
+      }
+      break;
+
+    case 3: // Education
+      if (!formData.education?.method?.trim()) {
+        errors.push("Education Method is required");
+      }
+      if (!formData.education?.history || formData.education.history.length === 0) {
+        errors.push("At least one education history is required");
+      } else {
+        formData.education.history.forEach((edu, index) => {
+          if (!edu.level?.trim()) {
+            errors.push(`Education ${index + 1}: Level is required`);
+          }
+          if (!edu.year?.toString().trim()) {
+            errors.push(`Education ${index + 1}: Passing year is required`);
+          }
+        });
+      }
+      break;
+
+    case 4: // Family
+      // Family info is mostly optional
+      break;
+
+    case 5: // Occupation
+      if (!formData.occupation?.current?.trim()) {
+        errors.push("Occupation is required");
+      }
+      if (!formData.occupation?.description?.trim()) {
+        errors.push("Profession description is required");
+      }
+      break;
+
+    case 6: // Marriage
+      if (formData.marriage?.guardiansAgree === undefined || formData.marriage?.guardiansAgree === null) {
+        errors.push("Guardians agreement is required");
+      }
+      break;
+
+    case 7: // Preference
+      if (!formData.preference?.ageRange?.trim()) {
+        errors.push("Preferred age range is required");
+      }
+      break;
+
+    case 8: // Contact Info
+      if (!formData.contactInfo?.guardianPhone?.trim()) {
+        errors.push("Phone number is required");
+      } else if (!/^01[3-9]\d{8}$/.test(formData.contactInfo.guardianPhone)) {
+        errors.push("Phone number must be valid (e.g., 01712345678)");
+      }
+      break;
+
+    case 9: // Visibility
+      // Visibility is mostly optional
+      break;
+
+    case 10: // Pledge
+      if (!formData.pledge?.parentsAware) {
+        errors.push("You must confirm that your parents/guardians are aware");
+      }
+      if (!formData.pledge?.informationAccurate) {
+        errors.push("You must confirm that the information is accurate");
+      }
+      if (!formData.pledge?.nikahResponsibility) {
+        errors.push("You must acknowledge the responsibility");
+      }
+      break;
+  }
+
+  return errors;
+};
+
 export default function BiodataForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<BiodataFormData>({});
@@ -93,6 +199,17 @@ export default function BiodataForm() {
   };
 
   const nextStep = () => {
+    // Validate current step before moving to next
+    const errors = validateStep(currentStep, formData);
+    
+    if (errors.length > 0) {
+      // Show error toast with all errors
+      errors.forEach((error) => {
+        toast.error(error);
+      });
+      return;
+    }
+
     if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1);
     }
@@ -107,6 +224,22 @@ export default function BiodataForm() {
   const handleSubmit = async () => {
     try {
       setLoading(true);
+      
+      // Validate all steps before final submission
+      const allErrors: string[] = [];
+      for (let i = 1; i <= steps.length; i++) {
+        const stepErrors = validateStep(i, formData);
+        allErrors.push(...stepErrors);
+      }
+
+      if (allErrors.length > 0) {
+        allErrors.forEach((error) => {
+          toast.error(error);
+        });
+        setLoading(false);
+        return;
+      }
+
       if (!token) {
         toast.error("No authentication token found");
         return;

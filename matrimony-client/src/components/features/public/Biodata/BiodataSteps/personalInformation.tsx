@@ -111,7 +111,7 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-3">
-          <Label htmlFor="fiqh">{t.personalInformation?.fiqh}</Label>
+          <Label htmlFor="fiqh">{t.personalInformation?.fiqh} *</Label>
           <Select
             value={personal.fiqh}
             onValueChange={(value) => handleChange("fiqh", value)}

@@ -33,6 +33,9 @@ export default function PledgeStep({ data, updateData }: StepProps) {
           {t.pledge?.finalPledge}
         </h2>
         <p className="text-muted-foreground">{t.pledge?.pledgeDescription}</p>
+        <p className="text-sm text-red-500 font-medium mt-3">
+          * All three confirmations below are required to proceed
+        </p>
       </div>
 
       <div className="space-y-6">

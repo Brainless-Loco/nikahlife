@@ -62,7 +62,7 @@ export default function OccupationStep({ data, updateData }: StepProps) {
 
       <div className="space-y-3">
         <Label htmlFor="description">
-          {t.OccupationalInformation?.profession}
+          {t.OccupationalInformation?.profession} *
         </Label>
         <Textarea
           id="description"

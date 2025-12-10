@@ -47,7 +47,7 @@ export default function MarriageStep({ data, updateData }: StepProps) {
           onCheckedChange={(checked) => handleChange("guardiansAgree", checked)}
         />
         <Label htmlFor="guardiansAgree">
-          {t.marriageRelatedInformation?.guardiansAgree}
+          {t.marriageRelatedInformation?.guardiansAgree} *
         </Label>
       </div>
 
