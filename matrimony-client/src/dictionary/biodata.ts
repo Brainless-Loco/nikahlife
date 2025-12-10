@@ -162,7 +162,7 @@ export const biodataTranslation = {
       educationQualification: "Educational Qualification",
       district: "District",
       maritalStatus: "Marital Status",
-      neverMarried: "Never married",
+      neverMarried: "Unmarried",
       divorced: "Divorced",
       widowed: "Widowed",
       profession: "Profession",
