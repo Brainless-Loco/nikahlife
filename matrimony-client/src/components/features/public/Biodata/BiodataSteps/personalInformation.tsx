@@ -345,7 +345,7 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
           value={personal.specialSkills}
           onChange={(e) => handleChange("specialSkills", e.target.value)}
           placeholder={t.personalInformation?.specialSkills}
-          className="border-emerald-200 dark:border-emerald-700"
+          className="border-emerald-200 dark:border-emerald-700 min-h-[120px]"
         />
       </div>
 
@@ -353,23 +353,23 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
         <Label htmlFor="favoriteBooks">
           {t.personalInformation?.favoriteBooks}
         </Label>
-        <Input
+        <Textarea
           id="favoriteBooks"
           value={personal.favoriteBooks}
           onChange={(e) => handleChange("favoriteBooks", e.target.value)}
           placeholder={t.personalInformation?.favoriteBooks}
-          className="border-emerald-200 dark:border-emerald-700"
+          className="border-emerald-200 dark:border-emerald-700 min-h-[120px]"
         />
       </div>
 
       <div className="space-y-3">
         <Label htmlFor="hobbies">{t.personalInformation?.hobbies}</Label>
-        <Input
+        <Textarea
           id="hobbies"
           value={personal.hobbies}
           onChange={(e) => handleChange("hobbies", e.target.value)}
           placeholder={t.personalInformation?.hobbies}
-          className="border-emerald-200 dark:border-emerald-700"
+          className="border-emerald-200 dark:border-emerald-700 min-h-[120px]"
         />
       </div>
     </div>

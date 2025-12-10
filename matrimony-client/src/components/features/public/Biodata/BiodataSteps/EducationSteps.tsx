@@ -347,6 +347,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { Plus, Trash2 } from "lucide-react";
 import {
   EducationHistory,
@@ -667,13 +668,13 @@ export default function EducationStep({ data, updateData }: StepProps) {
         <div className="space-y-2">
           {education.other.map((other, index) => (
             <div key={index} className="flex gap-2">
-              <Input
+              <Textarea
                 value={other}
                 onChange={(e) => updateOtherEducation(index, e.target.value)}
                 placeholder={
                   t.educationalQualification?.othersEducationPlaceholder
                 }
-                className="border-emerald-200 dark:border-emerald-700"
+                className="border-emerald-200 dark:border-emerald-700 min-h-[100px]"
               />
               <Button
                 type="button"
