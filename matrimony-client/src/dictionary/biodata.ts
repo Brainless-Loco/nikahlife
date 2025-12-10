@@ -101,6 +101,11 @@ export const biodataTranslation = {
       salafiAhlulHadith: "Salafi/Ahlul Hadith",
       age: "Age",
       personalInfo: "Personal Information",
+      skinColor: "Skin Color",
+      bloodGroup: "Blood Group",
+      weight: "Weight (kg)",
+      personality: "Personality Traits",
+      favoriteFood: "Favorite Food",
     },
 
     OccupationalInformation: {
@@ -329,8 +334,13 @@ export const biodataTranslation = {
       maliki: "মালিকি",
       hanbali: "হাম্বলি",
       salafiAhlulHadith: "সালাফি/আহলুল হাদিস",
-      age: "বয়স",
+      age: "বয়স",
       personalInfo: "ব্যাক্তিগত তথ্য",
+      skinColor: "গায়ের রঙ",
+      bloodGroup: "ব্লাড গ্রুপ",
+      weight: "ওজন (কেজি)",
+      personality: "ব্যক্তিত্ব",
+      favoriteFood: "প্রিয় খাবার",
     },
 
     OccupationalInformation: {

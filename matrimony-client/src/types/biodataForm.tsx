@@ -14,6 +14,11 @@ export interface PersonalInfo {
   specialSkills: string;
   favoriteBooks: string;
   hobbies: string;
+  skinColor: string;
+  bloodGroup: string;
+  weight: string;
+  personality: string;
+  favoriteFood: string;
 }
 
 export interface AddressInfo {

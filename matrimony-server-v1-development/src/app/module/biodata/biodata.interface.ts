@@ -177,6 +177,11 @@ export interface IBiodata {
     maritalStatus?: string;
     favoriteBooks?: string[];
     hobbies?: string[];
+    skinColor?: string;
+    bloodGroup?: string;
+    weight?: string;
+    personality?: string;
+    favoriteFood?: string;
   };
 
   occupation?: {

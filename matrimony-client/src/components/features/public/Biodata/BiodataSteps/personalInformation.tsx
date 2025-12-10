@@ -32,6 +32,11 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
     hobbies: "",
     maritalStatus: "",
     height: "",
+    skinColor: "",
+    bloodGroup: "",
+    weight: "",
+    personality: "",
+    favoriteFood: "",
     ...data.personal,
   });
 
@@ -190,6 +195,75 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
             </SelectContent>
           </Select>
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <Label htmlFor="skinColor">{t.personalInformation?.skinColor}</Label>
+          <Input
+            id="skinColor"
+            value={personal.skinColor}
+            onChange={(e) => handleChange("skinColor", e.target.value)}
+            placeholder="e.g., Fair, Medium, Dark"
+            className="border-emerald-200 dark:border-emerald-700"
+          />
+        </div>
+        <div className="space-y-3">
+          <Label htmlFor="bloodGroup">{t.personalInformation?.bloodGroup}</Label>
+          <Select
+            value={personal.bloodGroup}
+            onValueChange={(value) => handleChange("bloodGroup", value)}
+          >
+            <SelectTrigger className="border-emerald-200 dark:border-emerald-700 w-full">
+              <SelectValue placeholder="Select Blood Group" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="O+">O+</SelectItem>
+              <SelectItem value="O-">O-</SelectItem>
+              <SelectItem value="A+">A+</SelectItem>
+              <SelectItem value="A-">A-</SelectItem>
+              <SelectItem value="B+">B+</SelectItem>
+              <SelectItem value="B-">B-</SelectItem>
+              <SelectItem value="AB+">AB+</SelectItem>
+              <SelectItem value="AB-">AB-</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <Label htmlFor="weight">{t.personalInformation?.weight}</Label>
+          <Input
+            id="weight"
+            type="number"
+            value={personal.weight}
+            onChange={(e) => handleChange("weight", e.target.value)}
+            placeholder="e.g., 70"
+            className="border-emerald-200 dark:border-emerald-700"
+          />
+        </div>
+        <div className="space-y-3">
+          <Label htmlFor="favoriteFood">{t.personalInformation?.favoriteFood}</Label>
+          <Input
+            id="favoriteFood"
+            value={personal.favoriteFood}
+            onChange={(e) => handleChange("favoriteFood", e.target.value)}
+            placeholder="e.g., Biryani, Khichuri, etc."
+            className="border-emerald-200 dark:border-emerald-700"
+          />
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        <Label htmlFor="personality">{t.personalInformation?.personality}</Label>
+        <Textarea
+          id="personality"
+          value={personal.personality}
+          onChange={(e) => handleChange("personality", e.target.value)}
+          placeholder="Describe your personality traits, temperament, etc."
+          className="border-emerald-200 dark:border-emerald-700"
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
