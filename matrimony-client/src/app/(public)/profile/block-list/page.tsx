@@ -33,16 +33,16 @@ const BlockList: React.FC = () => {
     new Set()
   );
   const [error, setError] = useState<string | null>(null);
-  const token: string = getCookie("token") || "";
+  const [token, setToken] = useState<string>("");
+
+  useEffect(() => {
+    setToken(getCookie("token") || "");
+  }, []);
+
   // Fetch blocked users
   useEffect(() => {
+    if (!token) return;
     const fetchIgnoredUsers = async (): Promise<void> => {
-      if (!token) {
-        setError("Authentication token not found. Please login again.");
-        setLoading(false);
-        return;
-      }
-
       try {
         setLoading(true);
         setError(null);

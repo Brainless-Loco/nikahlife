@@ -212,6 +212,10 @@ export const biodataTranslation = {
       viewContactInfo: "View Contact Information",
       upgradePremium: "Upgrade to Premium",
       upgradeVip: "Upgrade to VIP",
+      copyLink: "Copy Link",
+      downloadBiodata: "Download Biodata",
+      linkCopied: "Link copied to clipboard!",
+      onlyOwnBiodata: "You can only download your own biodata",
     },
     visibility: {
       title: "Biodata Visibility",
@@ -447,6 +451,10 @@ export const biodataTranslation = {
       viewContactInfo: "যোগাযোগ তথ্য দেখুন",
       upgradePremium: "প্রিমিয়ামে আপগ্রেড করুন",
       upgradeVip: "ভিআইপিতে আপগ্রেড করুন",
+      copyLink: "লিঙ্ক কপি করুন",
+      downloadBiodata: "বায়োডাটা ডাউনলোড করুন",
+      linkCopied: "লিঙ্ক ক্লিপবোর্ডে কপি করা হয়েছে!",
+      onlyOwnBiodata: "শুধুমাত্র নিজের বায়োডাটা ডাউনলোড করতে পারবেন",
     },
     visibility: {
       title: "বায়োডাটা দৃশ্যমানতা",

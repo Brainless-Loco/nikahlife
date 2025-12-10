@@ -8,9 +8,14 @@ import { PageLoader } from "@/components/common/Loader";
 const MySentInterest = () => {
   const [interestList, setInterestList] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [token, setToken] = useState<string>("");
 
-  const token = getCookie("token") || "";
   useEffect(() => {
+    setToken(getCookie("token") || "");
+  }, []);
+
+  useEffect(() => {
+    if (!token) return;
     const fetchInterestSent = async () => {
       setLoading(true);
       try {
