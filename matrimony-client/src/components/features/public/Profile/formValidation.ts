@@ -60,6 +60,7 @@ export const profileSchema = z.object({
 
   // Preferences
   ageRange: z.string().optional(),
+  complexion: z.string().optional(),
   educationLevel: z.string().optional(),
   preferredMaritalStatus: z.string().optional(),
   religiousPractice: z.string().optional(),

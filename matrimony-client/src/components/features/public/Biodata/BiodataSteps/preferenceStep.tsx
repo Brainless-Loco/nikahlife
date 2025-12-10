@@ -67,16 +67,22 @@ export default function PreferenceStep({ data, updateData }: StepProps) {
               />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value={t.expectedLifePartner?.fair}>
+              <SelectItem value="উজ্জ্বল ফর্সা">
+                {t.expectedLifePartner?.veryFair}
+              </SelectItem>
+              <SelectItem value="ফর্সা">
                 {t.expectedLifePartner?.fair}
               </SelectItem>
-              <SelectItem value={t.expectedLifePartner?.medium}>
-                {t.expectedLifePartner?.medium}
+              <SelectItem value="উজ্জ্বল শ্যামলা">
+                {t.expectedLifePartner?.lightBrown}
               </SelectItem>
-              <SelectItem value={t.expectedLifePartner?.dark}>
-                {t.expectedLifePartner?.dark}
+              <SelectItem value="শ্যামলা">
+                {t.expectedLifePartner?.brown}
               </SelectItem>
-              <SelectItem value={t.expectedLifePartner?.any}>
+              <SelectItem value="কালো">
+                {t.expectedLifePartner?.black}
+              </SelectItem>
+              <SelectItem value="যেকোনো">
                 {t.expectedLifePartner?.any}
               </SelectItem>
             </SelectContent>

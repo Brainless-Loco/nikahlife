@@ -200,13 +200,31 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-3">
           <Label htmlFor="skinColor">{t.personalInformation?.skinColor}</Label>
-          <Input
-            id="skinColor"
+          <Select
             value={personal.skinColor}
-            onChange={(e) => handleChange("skinColor", e.target.value)}
-            placeholder="e.g., Fair, Medium, Dark"
-            className="border-emerald-200 dark:border-emerald-700"
-          />
+            onValueChange={(value) => handleChange("skinColor", value)}
+          >
+            <SelectTrigger className="border-emerald-200 dark:border-emerald-700 w-full">
+              <SelectValue placeholder="Select Skin Tone" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="উজ্জ্বল ফর্সা">
+                {t.personalInformation?.veryFair}
+              </SelectItem>
+              <SelectItem value="ফর্সা">
+                {t.personalInformation?.fair}
+              </SelectItem>
+              <SelectItem value="উজ্জ্বল শ্যামলা">
+                {t.personalInformation?.lightBrown}
+              </SelectItem>
+              <SelectItem value="শ্যামলা">
+                {t.personalInformation?.brown}
+              </SelectItem>
+              <SelectItem value="কালো">
+                {t.personalInformation?.black}
+              </SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <div className="space-y-3">
           <Label htmlFor="bloodGroup">{t.personalInformation?.bloodGroup}</Label>

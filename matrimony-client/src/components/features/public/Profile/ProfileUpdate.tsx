@@ -70,6 +70,7 @@ export default function ProfileUpdate() {
       phone: "",
       email: user?.email || "",
       country: "Bangladesh",
+      complexion: "",
     },
   });
 
@@ -81,6 +82,7 @@ export default function ProfileUpdate() {
       phone: "",
       email: user?.email || "",
       country: "Bangladesh",
+      complexion: "",
     });
   }, [user]);
 
@@ -1470,6 +1472,38 @@ export default function ProfileUpdate() {
                           <FormControl>
                             <Input placeholder="e.g., 22-28" {...field} />
                           </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="complexion"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Complexion Preference</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="w-full">
+                                <SelectValue placeholder="Select complexion" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="উজ্জ্বল ফর্সা">
+                                Very Fair
+                              </SelectItem>
+                              <SelectItem value="ফর্সা">Fair</SelectItem>
+                              <SelectItem value="উজ্জ্বল শ্যামলা">
+                                Light Brown
+                              </SelectItem>
+                              <SelectItem value="শ্যামলা">Brown</SelectItem>
+                              <SelectItem value="কালো">Black</SelectItem>
+                              <SelectItem value="যেকোনো">Any</SelectItem>
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}
