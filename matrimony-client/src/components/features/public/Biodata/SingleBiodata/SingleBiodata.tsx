@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BiodataType } from "@/types/publicBiodata";
+import { downloadBiodataAsPDF } from "@/utils/pdfGenerator";
 import { toast } from "sonner";
 import { PageLoader } from "@/components/common/Loader";
 import { getCookie } from "@/utils/getToken";
@@ -150,7 +151,7 @@ export default function Biodata({ id }: { id: string }) {
 
   const handleDownloadPDF = async () => {
     // Check if user is viewing their own biodata
-    if (user?._id !== biodata?.userId?._id) {
+    if (user?._id !== biodata?.userId?._id && user?._id !== biodata?.userId) {
       toast.error(
         language === "bn"
           ? "শুধুমাত্র নিজের বায়োডাটা ডাউনলোড করতে পারবেন"
@@ -160,230 +161,14 @@ export default function Biodata({ id }: { id: string }) {
     }
 
     try {
-      const { jsPDF } = await import("jspdf");
-      const doc = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-      });
-
-      // Colors
-      const primaryColor = [16, 185, 129]; // emerald-600
-      const secondaryColor = [51, 65, 85]; // slate-700
-      const lightGray = [243, 244, 246]; // gray-100
-      const darkGray = [107, 114, 128]; // gray-500
-
-      // Page dimensions
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
-      const margin = 15;
-      let yPos = 15;
-
-      // Header Background
-      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.rect(0, 0, pageWidth, 40, "F");
-
-      // Title
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(28);
-      doc.setFont("helvetica", "bold");
-      doc.text("NIKAH LIFE", margin, 20);
-
-      doc.setFontSize(11);
-      doc.setFont("helvetica", "normal");
-      doc.text("Matrimonial Profile", margin, 28);
-
-      // Profile Information Box
-      yPos = 50;
-      doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-      doc.setFontSize(16);
-      doc.setFont("helvetica", "bold");
-      doc.text(biodata?.name || "Name", margin, yPos);
-
-      yPos += 8;
-      doc.setFontSize(10);
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-      doc.text(`Biodata No: ${biodata?.biodataNumber}`, margin, yPos);
-
-      yPos += 6;
-      doc.text(
-        `Upload Date: ${new Date(biodata?.createdAt || "").toLocaleDateString(
-          language === "bn" ? "bn-BD" : "en-US"
-        )}`,
-        margin,
-        yPos
-      );
-
-      // Section: Personal Information
-      yPos += 12;
-      doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-      doc.rect(margin - 2, yPos - 5, pageWidth - 2 * margin + 4, 7, "F");
-      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("PERSONAL INFORMATION", margin, yPos);
-
-      yPos += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "normal");
-
-      const personalInfo = [
-        ["Age:", `${biodata?.age} years`],
-        ["Gender:", biodata?.gender || "N/A"],
-        ["Height:", biodata?.personal?.height || "N/A"],
-        ["Marital Status:", biodata?.personal?.maritalStatus || "N/A"],
-        ["Nationality:", biodata?.address?.country || "N/A"],
-        ["Complexion:", biodata?.preference?.complexion || "N/A"],
-      ];
-
-      personalInfo.forEach((item) => {
-        doc.setFont("helvetica", "bold");
-        doc.text(item[0], margin, yPos);
-        doc.setFont("helvetica", "normal");
-        doc.text(item[1], margin + 35, yPos);
-        yPos += 5;
-      });
-
-      // Section: Address Information
-      yPos += 3;
-      doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-      doc.rect(margin - 2, yPos - 5, pageWidth - 2 * margin + 4, 7, "F");
-      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("ADDRESS", margin, yPos);
-
-      yPos += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(9);
-
-      doc.setFont("helvetica", "bold");
-      doc.text("Permanent Address:", margin, yPos);
-      doc.setFont("helvetica", "normal");
-      const permAddress = `${biodata?.address?.permanent?.division}, ${biodata?.address?.permanent?.district}`;
-      doc.text(permAddress, margin + 50, yPos);
-      yPos += 5;
-
-      doc.setFont("helvetica", "bold");
-      doc.text("Present Address:", margin, yPos);
-      doc.setFont("helvetica", "normal");
-      const presAddress = `${biodata?.address?.present?.division}, ${biodata?.address?.present?.district}`;
-      doc.text(presAddress, margin + 50, yPos);
-      yPos += 5;
-
-      doc.setFont("helvetica", "bold");
-      doc.text("Grew Up At:", margin, yPos);
-      doc.setFont("helvetica", "normal");
-      doc.text(biodata?.address?.grewUpAt || "N/A", margin + 50, yPos);
-
-      // Section: Education
-      yPos += 8;
-      doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-      doc.rect(margin - 2, yPos - 5, pageWidth - 2 * margin + 4, 7, "F");
-      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("EDUCATION", margin, yPos);
-
-      yPos += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(9);
-
-      doc.setFont("helvetica", "bold");
-      doc.text("Method:", margin, yPos);
-      doc.setFont("helvetica", "normal");
-      doc.text(biodata?.education?.method || "N/A", margin + 35, yPos);
-      yPos += 5;
-
-      biodata?.education?.history.forEach((edu) => {
-        doc.setFont("helvetica", "bold");
-        doc.text(`${edu.level}:`, margin, yPos);
-        doc.setFont("helvetica", "normal");
-        const eduText = edu.level === "SSC" || edu.level === "HSC" ? `${edu.group} (${edu.year})` : `${edu.subject} (${edu.year})`;
-        doc.text(eduText, margin + 35, yPos);
-        yPos += 5;
-      });
-
-      // Section: Occupation
-      yPos += 3;
-      doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-      doc.rect(margin - 2, yPos - 5, pageWidth - 2 * margin + 4, 7, "F");
-      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("OCCUPATION", margin, yPos);
-
-      yPos += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(9);
-
-      const occupationInfo = [
-        ["Current Occupation:", biodata?.occupation?.current || "N/A"],
-        ["Description:", biodata?.occupation?.description || "N/A"],
-        [
-          "Income:",
-          biodata?.occupation?.income?.amount
-            ? `${biodata.occupation.income.amount} ${biodata.occupation.income.currency}`
-            : "Not specified",
-        ],
-      ];
-
-      occupationInfo.forEach((item) => {
-        doc.setFont("helvetica", "bold");
-        doc.text(item[0], margin, yPos);
-        doc.setFont("helvetica", "normal");
-        doc.text(item[1], margin + 50, yPos);
-        yPos += 5;
-      });
-
-      // Section: Expected Life Partner
-      yPos += 3;
-      doc.setFillColor(lightGray[0], lightGray[1], lightGray[2]);
-      doc.rect(margin - 2, yPos - 5, pageWidth - 2 * margin + 4, 7, "F");
-      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.setFontSize(12);
-      doc.setFont("helvetica", "bold");
-      doc.text("EXPECTED LIFE PARTNER", margin, yPos);
-
-      yPos += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(9);
-
-      const preferenceInfo = [
-        ["Age Range:", biodata?.preference?.ageRange || "N/A"],
-        ["Height:", biodata?.preference?.height || "N/A"],
-        ["Education:", biodata?.preference?.education || "N/A"],
-        ["Profession:", biodata?.preference?.profession || "N/A"],
-        ["Location Preference:", biodata?.preference?.location || "N/A"],
-      ];
-
-      preferenceInfo.forEach((item) => {
-        doc.setFont("helvetica", "bold");
-        doc.text(item[0], margin, yPos);
-        doc.setFont("helvetica", "normal");
-        doc.text(item[1], margin + 50, yPos);
-        yPos += 5;
-      });
-
-      // Footer
-      doc.setFontSize(8);
-      doc.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-      doc.text(
-        `Generated on ${new Date().toLocaleDateString()} | NikahLife Matrimonial Service`,
-        pageWidth / 2,
-        pageHeight - 10,
-        { align: "center" }
-      );
-
-      // Save PDF
-      doc.save(`biodata_${biodata?.biodataNumber}.pdf`);
+      await downloadBiodataAsPDF(biodata);
       toast.success(
-        language === "bn" ? "বায়োডাটা ডাউনলোড হয়েছে" : "Biodata downloaded successfully!"
+        language === "bn"
+          ? "বায়োডাটা ডাউনলোড হয়েছে"
+          : "Biodata downloaded successfully!"
       );
     } catch (error) {
-      console.error("PDF generation error:", error);
+      console.error("PDF download error:", error);
       toast.error(
         language === "bn" ? "ডাউনলোড ব্যর্থ হয়েছে" : "Failed to download biodata"
       );
@@ -397,6 +182,7 @@ export default function Biodata({ id }: { id: string }) {
       .join("")
       .toUpperCase();
   };
+
   if (loading) {
     return <PageLoader />;
   }

@@ -155,7 +155,7 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-3">
-          <Label htmlFor="height">{t.expectedLifePartner?.height}</Label>
+          <Label htmlFor="height">{t.expectedLifePartner?.height} *</Label>
           <Input
             id="height"
             value={personal.height}
@@ -166,7 +166,7 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
         </div>
         <div className="space-y-3">
           <Label htmlFor="maritalStatus">
-            {t.expectedLifePartner?.maritalStatus}
+            {t.expectedLifePartner?.maritalStatus} *
           </Label>
           <Select
             value={personal.maritalStatus}
@@ -199,7 +199,7 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-3">
-          <Label htmlFor="skinColor">{t.personalInformation?.skinColor}</Label>
+          <Label htmlFor="skinColor">{t.personalInformation?.skinColor} *</Label>
           <Select
             value={personal.skinColor}
             onValueChange={(value) => handleChange("skinColor", value)}
@@ -251,7 +251,7 @@ export default function PersonalInfoStep({ data, updateData }: StepProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-3">
-          <Label htmlFor="weight">{t.personalInformation?.weight}</Label>
+          <Label htmlFor="weight">{t.personalInformation?.weight} *</Label>
           <Input
             id="weight"
             type="number"

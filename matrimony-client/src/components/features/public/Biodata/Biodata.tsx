@@ -202,7 +202,7 @@ export default function ProfessionalBiodatasPage() {
       <div className="container mx-auto px-4">
         {isLoading && <PageLoader />}
         {profiles.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mt-4 pb-12">
             {profiles.map((biodata) => {
               return (
                 <Card

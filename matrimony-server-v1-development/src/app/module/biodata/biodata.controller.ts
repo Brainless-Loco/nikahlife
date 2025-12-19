@@ -4,6 +4,7 @@ import httpStatus from "http-status-codes";
 import { ApprovalStatus } from "./biodata.interface";
 import { sendResponse } from "../../../utils/sendResponse";
 import catchAsync from "../../../utils/catchAsync";
+import { generateBiodataPDFHTML } from "../../services/pdfGenerator";
 
 // Create or update own biodata
 const createOrUpdateBiodata = catchAsync(async (req: Request, res: Response) => {
@@ -166,6 +167,47 @@ const getAllBiodataAdmin = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+// Download biodata as PDF
+const downloadBiodataPDF = catchAsync(async (req: Request, res: Response) => {
+  const biodataId = req.params.id;
+  const currentUserId = req.user?.userId;
+
+  // Get biodata directly from database
+  const biodata = await BiodataServices.getBiodataByIdDirect(biodataId);
+
+  if (!biodata) {
+    return sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: "Biodata not found",
+      data: null,
+    });
+  }
+
+  // Check if user is the owner - allow download only for owner
+  const ownerId = biodata.userId?._id?.toString() || biodata.userId?.toString();
+  if (ownerId !== currentUserId) {
+    return sendResponse(res, {
+      statusCode: httpStatus.FORBIDDEN,
+      success: false,
+      message: "You can only download your own biodata",
+      data: null,
+    });
+  }
+
+  // Generate PDF HTML
+  const htmlContent = generateBiodataPDFHTML(biodata);
+
+  // Set response headers for PDF
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename="biodata_${biodata.biodataNumber || "export"}.html"`
+  );
+
+  res.send(htmlContent);
+});
+
 export const BiodataControllers = {
   createOrUpdateBiodata,
   updateOwnBiodata,
@@ -175,6 +217,7 @@ export const BiodataControllers = {
   getBiodataById,
   approveOrRejectBiodata,
   getPendingBiodata,
-  adminDeleteBiodata ,
-  getAllBiodataAdmin
+  adminDeleteBiodata,
+  getAllBiodataAdmin,
+  downloadBiodataPDF,
 };

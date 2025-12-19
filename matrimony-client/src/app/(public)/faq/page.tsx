@@ -329,7 +329,7 @@ export default function FAQPage() {
                   setOpenItems(new Set(["0"]));
                 }}
                 className={cn(
-                  "px-4 py-2 rounded-lg font-medium transition-all duration-200",
+                  "px-4 py-2 rounded-lg font-medium transition-all duration-200 cursor-pointer",
                   openCategory === key
                     ? "bg-emerald-600 dark:bg-emerald-600 text-white shadow-lg"
                     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-emerald-200 dark:border-emerald-900 hover:border-emerald-400 dark:hover:border-emerald-700"
@@ -344,7 +344,7 @@ export default function FAQPage() {
           <div className="space-y-4">
             {categories.map(([categoryKey, category]) => (
               <div key={categoryKey} className={openCategory !== categoryKey ? "hidden" : ""}>
-                {category.items.map((item, index) => {
+                  {category.items.map((item, index) => {
                   const itemKey = `${categoryKey}-${index}`;
                   const isOpen = openItems.has(itemKey);
 
@@ -355,7 +355,7 @@ export default function FAQPage() {
                     >
                       <button
                         onClick={() => toggleItem(categoryKey, index)}
-                        className="w-full px-6 py-4 flex items-center justify-between hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors duration-200"
+                        className="w-full px-6 py-4 flex items-center justify-between hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors duration-200 cursor-pointer"
                       >
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 text-left">
                           {item.question}

@@ -17,6 +17,7 @@ router.get("/all", BiodataControllers.getAllBiodata);
 router.delete("/",checkAuth(USER_ROLE.USER),BiodataControllers.deleteOwnBiodata)
 router.get("/my-biodata", checkAuth(USER_ROLE.USER), BiodataControllers.getOwnBiodata);
 router.get("/pending", checkAuth(USER_ROLE.ADMIN), BiodataControllers.getPendingBiodata);
+router.get("/download/:id", checkAuth(USER_ROLE.USER), BiodataControllers.downloadBiodataPDF);
 router.get("/:id", BiodataControllers.getBiodataById);
 
 router.patch("/approval/:id", checkAuth(USER_ROLE.ADMIN), BiodataControllers.approveOrRejectBiodata);

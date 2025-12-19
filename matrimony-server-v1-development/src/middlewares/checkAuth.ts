@@ -8,7 +8,17 @@ import { SubscriptionType } from "../app/module/subscription/subscription.interf
 
 const checkAuth = (...requiredRoles: string[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization;
+    let token: string | undefined;
+    
+    // Try to get token from Authorization header first
+    const authHeader = req.headers.authorization;
+    if (authHeader) {
+      // Extract token from "Bearer <token>" format
+      token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : authHeader;
+    } else if (req.cookies?.token) {
+      // Fall back to token from cookies
+      token = req.cookies.token;
+    }
 
     if (!token) {
       throw new AppError(401, "You are not authorized.");

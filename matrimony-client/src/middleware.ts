@@ -265,7 +265,7 @@ function isAuthPage(pathname: string): boolean {
 }
 
 function isPublicPage(pathname: string): boolean {
-  const publicPaths = ["/", "/about", "/contact", "/success-stories"];
+  const publicPaths = ["/", "/about", "/contact", "/success-stories", "/faq", "/guide"];
   const dynamicPublicPrefixes = ["/biodatas"];
 
   return (

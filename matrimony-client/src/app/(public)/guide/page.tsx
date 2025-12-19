@@ -389,7 +389,7 @@ export default function GuidePage() {
                 key={key}
                 onClick={() => setActiveSection(key)}
                 className={cn(
-                  "px-6 py-3 rounded-lg font-semibold transition-all duration-200",
+                  "px-6 py-3 rounded-lg font-semibold transition-all duration-200 cursor-pointer",
                   activeSection === key
                     ? "bg-emerald-600 dark:bg-emerald-600 text-white shadow-lg"
                     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-emerald-200 dark:border-emerald-900 hover:border-emerald-400 dark:hover:border-emerald-700"

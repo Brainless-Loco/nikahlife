@@ -42,18 +42,23 @@ const familySchema = z.object({
 
 // Personal Schema
 const personalSchema = z.object({
-  dress: z.string().default("উত্তর দেয়া হয়নি"),
-  prayerHabit: z.string().default("উত্তর দেয়া হয়নি"),
-  maintainMahram: z.string().default("উত্তর দেয়া হয়নি"),
-  quranReading: z.string().default("উত্তর দেয়া হয়নি"),
-  fiqh: z.string().default("উত্তর দেয়া হয়নি"),
-  entertainment: z.string().default("উত্তর দেয়া হয়নি"),
-  healthIssues: z.string().default("উত্তর দেয়া হয়নি"),
-  specialSkills: z.string().default("উত্তর দেয়া হয়নি"),
+  dress: z.string().default("উত্তর দেয়া হয়নি"),
+  prayerHabit: z.string().default("উত্তর দেয়া হয়নি"),
+  maintainMahram: z.string().default("উত্তর দেয়া হয়নি"),
+  quranReading: z.string().default("উত্তর দেয়া হয়নি"),
+  fiqh: z.string().default("উত্তর দেয়া হয়নি"),
+  entertainment: z.string().default("উত্তর দেয়া হয়নি"),
+  healthIssues: z.string().default("উত্তর দেয়া হয়নি"),
+  specialSkills: z.string().default("উত্তর দেয়া হয়নি"),
   favoriteBooks: z.array(z.string()).default([]),
   hobbies: z.array(z.string()).default([]),
-  height: z.string().default("উত্তর দেয়া হয়নি"),
-  maritalStatus: z.string().default("উত্তর দেয়া হয়নি"),
+  height: z.string().min(1, "Height is required"),
+  maritalStatus: z.string().min(1, "Marital Status is required"),
+  skinColor: z.string().min(1, "Skin Color is required"),
+  weight: z.string().min(1, "Weight is required"),
+  bloodGroup: z.string().default("উত্তর দেয়া হয়নি"),
+  personality: z.string().default("উত্তর দেয়া হয়নি"),
+  favoriteFood: z.string().default("উত্তর দেয়া হয়নি"),
 });
 
 // Occupation Schema

@@ -1,0 +1,145 @@
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "userId": {
+    "_id": "507f1f77bcf86cd799439012",
+    "email": "user@example.com",
+    "phone": "+8801700000000",
+    "role": "user"
+  },
+  "biodataNumber": "BIO-001234",
+  "isVisible": true,
+  "name": "Fatema Akter",
+  "gender": "female",
+  "age": 25,
+  "phone": "+8801700000000",
+  
+  "address": {
+    "country": "Bangladesh",
+    "grewUpAt": "Dhaka",
+    "permanent": {
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Dhanmondi",
+      "address": "123 Main Street, Dhanmondi"
+    },
+    "present": {
+      "division": "Dhaka",
+      "district": "Dhaka",
+      "upazila": "Mirpur",
+      "address": "456 Park Road, Mirpur"
+    }
+  },
+
+  "education": {
+    "method": "Islamic Education",
+    "history": [
+      {
+        "level": "SSC",
+        "institution": "Ideal School",
+        "year": 2016,
+        "group": "Science",
+        "subject": "Mathematics",
+        "result": "A+",
+        "_id": "507f1f77bcf86cd799439013"
+      },
+      {
+        "level": "HSC",
+        "institution": "Ideal College",
+        "year": 2018,
+        "group": "Science",
+        "subject": "Physics",
+        "result": "A",
+        "_id": "507f1f77bcf86cd799439014"
+      },
+      {
+        "level": "Bachelor's",
+        "institution": "Dhaka University",
+        "year": 2022,
+        "group": "Engineering",
+        "subject": "Computer Science",
+        "result": "B+",
+        "_id": "507f1f77bcf86cd799439015"
+      }
+    ],
+    "other": ["Quranic Hifz", "Arabic Language Course"]
+  },
+
+  "family": {
+    "fatherAlive": true,
+    "motherAlive": true,
+    "fatherProfession": "Engineer",
+    "motherProfession": "Teacher",
+    "brothers": 2,
+    "sisters": 1,
+    "brothersInfo": ["Engineer at Tech Company", "Studying Medicine"],
+    "sistersInfo": ["Housewife"],
+    "unclesProfession": ["Doctor", "Businessman"],
+    "financialStatus": "Middle Class",
+    "financialDetails": "Well-settled family with good income",
+    "religiousPractice": "Very Religious"
+  },
+
+  "personal": {
+    "height": "5'4\"",
+    "maritalStatus": "Never Married",
+    "weight": "55 kg",
+    "skinColor": "Fair",
+    "bloodGroup": "O+",
+    "dress": "Abaya and Hijab",
+    "prayerHabit": "Five times regular",
+    "maintainMahram": "Yes",
+    "quranReading": "Fluent",
+    "fiqh": "Hanafi",
+    "entertainment": "None",
+    "healthIssues": "None",
+    "specialSkills": "Computer Programming, Cooking",
+    "personality": "Friendly and caring",
+    "favoriteFood": "Biryani, Salad",
+    "favoriteBooks": ["Quran Tafsir", "Islamic History", "Self-help books"],
+    "hobbies": ["Reading", "Cooking", "Gardening", "Writing"]
+  },
+
+  "occupation": {
+    "current": "Software Engineer",
+    "description": "Working as a software engineer at a reputed IT company",
+    "income": {
+      "amount": 75000,
+      "currency": "BDT"
+    }
+  },
+
+  "marriage": {
+    "guardiansAgree": true,
+    "studyContinue": "After Marriage",
+    "reason": "Want to live Islamic life",
+    "jobStatus": "Will Continue"
+  },
+
+  "preference": {
+    "ageRange": "26-32",
+    "complexion": "Fair or Medium",
+    "height": "5'6\" and above",
+    "education": "Bachelor's or Higher",
+    "location": "Bangladesh or Abroad",
+    "maritalStatus": "Never Married",
+    "profession": "Any good profession",
+    "financialCondition": "Middle class or above",
+    "qualities": ["Religious", "Kind-hearted", "Well-educated", "Family-oriented"]
+  },
+
+  "contactInfo": {
+    "guardianPhone": "+8801600000000",
+    "relation": "Father"
+  },
+
+  "pledge": {
+    "parentsAware": true,
+    "informationAccurate": true,
+    "nikahResponsibility": true
+  },
+
+  "isApproved": "approved",
+  "createdAt": "2024-01-15T10:30:00.000Z",
+  "updatedAt": "2024-12-19T14:25:00.000Z",
+  "__v": 0
+}

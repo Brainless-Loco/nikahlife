@@ -68,6 +68,14 @@ const getAllBiodata = async (filters: any, currentUserId: string) => {
 
   conditions.push({ isApproved: ApprovalStatus.APPROVED });
 
+  // ✅ Backward compatible visibility filter:
+  // Show profiles where isVisible is true OR isVisible field doesn't exist (old data)
+  conditions.push({
+    $or: [
+      { isVisible: true },
+      { isVisible: { $exists: false } } // Default to visible for old data
+    ]
+  });
 
   const ignored = await Ignore.find({ user: currentUserId }).select(
     "ignoredUser"
@@ -212,6 +220,16 @@ const getBiodataById = async (biodataId: string, currentUserId: string) => {
 
   if (!biodata) return null;
 
+  // ✅ Backward compatible visibility check:
+  // Hide profile only if isVisible is explicitly set to false AND user is not the owner
+  // If isVisible field doesn't exist (old data), treat as visible
+  const isHidden = biodata.isVisible === false;
+  const isOwner = biodata.userId._id.toString() === currentUserId;
+  
+  if (isHidden && !isOwner) {
+    return null; // Hidden profile - non-owner cannot view
+  }
+
   const isIgnored = await Ignore.findOne({
     user: new mongoose.Types.ObjectId(currentUserId),
     ignoredUser: biodata.userId._id,
@@ -219,6 +237,16 @@ const getBiodataById = async (biodataId: string, currentUserId: string) => {
 
   if (isIgnored) return null;
 
+  return biodata;
+};
+
+// Get biodata by ID without visibility/ignore checks (for owner-only operations like PDF download)
+const getBiodataByIdDirect = async (biodataId: string) => {
+  if (!mongoose.Types.ObjectId.isValid(biodataId)) {
+    return null;
+  }
+
+  const biodata = await Biodata.findById(biodataId).populate("userId", "username email role phone");
   return biodata;
 };
 
@@ -296,6 +324,7 @@ export const BiodataServices = {
   updateOwnBiodata,
   getAllBiodata,
   getBiodataById,
+  getBiodataByIdDirect,
   approveOrRejectBiodata,
   getPendingBiodata,
   getOwnBiodata,

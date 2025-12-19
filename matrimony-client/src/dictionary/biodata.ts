@@ -311,7 +311,7 @@ export const biodataTranslation = {
       addSisterInfoBtn: "বোনদের তথ্য যোগ করুন",
       sisterInfoPlaceHolder: "যেমন, গৃহিণী, ছাত্রী, ইত্যাদি।",
       addUncleBtn: "চাচা যোগ করুন",
-      poor: "গরীব",
+      poor: "নিম্নবিত্ত",
       lower: "নিম্ন মধ্যবিত্ত",
       middle: "মধ্যবিত্ত",
       upper: "উচ্চ মধ্যবিত্ত",

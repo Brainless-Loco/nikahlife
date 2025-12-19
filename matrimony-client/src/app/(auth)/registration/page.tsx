@@ -152,8 +152,8 @@ export default function RegistrationPage() {
       );
       localStorage.setItem(
         "userInfo",
-        JSON.stringify({ 
-          email: data.email || null, 
+        JSON.stringify({
+          email: data.email || null,
           phone: data.phone || null,
           verificationMethod: data.email ? "email" : "phone"
         })
@@ -223,17 +223,34 @@ export default function RegistrationPage() {
           {/* Logo */}
           <Link href={"/"}>
             <div className="flex items-center justify-center lg:justify-start space-x-3">
-              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg">
-                <Heart className="h-6 w-6 text-white fill-white" />
+
+              <div >
+                <Image
+                  width={200}
+                  height={200}
+                  src={logo}
+                  alt="nikahlife"
+                  className="block"
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
-                  Nikah
-                </span>
-                <span className="text-sm text-emerald-500/70 font-medium -mt-1">
-                  Find Your Perfect Match
-                </span>
-              </div>
+
+              {/* <div >
+                          <Image
+                            width={200}
+                            height={200}
+                            src={logoWhite}
+                            alt="nikahlife"
+                            className="hidden dark:block"
+                          />
+                        </div> */}
+              {/* <div className="flex flex-col">
+                          <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
+                            Nikah
+                          </span>
+                          <span className="text-sm text-emerald-500/70 font-medium -mt-1">
+                            Find Your Perfect Match
+                          </span>
+                        </div> */}
             </div>
           </Link>
 
@@ -299,11 +316,10 @@ export default function RegistrationPage() {
                 {steps.map((step) => (
                   <div key={step.number} className="flex items-center">
                     <div
-                      className={`h-10 w-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
-                        currentStep >= step.number
+                      className={`h-10 w-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${currentStep >= step.number
                           ? "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white"
                           : "bg-gray-200 text-gray-500"
-                      }`}
+                        }`}
                     >
                       {currentStep > step.number ? (
                         <Check className="h-5 w-5" />
@@ -313,11 +329,10 @@ export default function RegistrationPage() {
                     </div>
                     {step.number < steps.length && (
                       <div
-                        className={`w-16 h-1 mx-2 transition-all duration-300 ${
-                          currentStep > step.number
+                        className={`w-16 h-1 mx-2 transition-all duration-300 ${currentStep > step.number
                             ? "bg-emerald-500"
                             : "bg-gray-200"
-                        }`}
+                          }`}
                       ></div>
                     )}
                   </div>
