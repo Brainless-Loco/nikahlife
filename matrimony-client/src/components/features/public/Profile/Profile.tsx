@@ -115,7 +115,7 @@ export default function Profile() {
 
           {/* Main Actions */}
           <div className="xl:col-span-3">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 py-8 px-4">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 py-8 px-4 pb-20">
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   {language === "bn" ? "আপনার প্রোফাইল" : "Your Profile"}
