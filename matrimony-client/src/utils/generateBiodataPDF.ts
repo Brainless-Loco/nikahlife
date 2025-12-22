@@ -1,6 +1,6 @@
 import { jsPDF } from "jspdf";
 
-export const generateBiodataPDF = async (biodata: any, language: string = "en") => {
+export const generateBiodataPDF = async (biodata: Record<string, unknown>, language: string = "en") => {
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
   // Colors matching theme
@@ -46,7 +46,7 @@ export const generateBiodataPDF = async (biodata: any, language: string = "en") 
   doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
   doc.setFontSize(16);
   doc.setFont("helvetica", "bold");
-  doc.text(biodata?.name || "N/A", margin, yPos);
+  doc.text(String(biodata?.name || "N/A"), margin, yPos);
 
   yPos += 7;
   doc.setFontSize(9);
@@ -60,11 +60,11 @@ export const generateBiodataPDF = async (biodata: any, language: string = "en") 
   }
   if (biodata?.createdAt) {
     try {
-      const uploadDate = new Date(biodata.createdAt).toLocaleDateString(
+      const uploadDate = new Date(String(biodata.createdAt)).toLocaleDateString(
         language === "bn" ? "bn-BD" : "en-US"
       );
       bioInfo.push(`Uploaded: ${uploadDate}`);
-    } catch (e) {
+    } catch {
       // ignore date errors
     }
   }
@@ -85,7 +85,7 @@ export const generateBiodataPDF = async (biodata: any, language: string = "en") 
     yPos += 8;
   };
 
-  const addField = (label: string, value: any) => {
+  const addField = (label: string, value: unknown) => {
     if (!value || value === "উত্তর দেয়া হয়নি" || value === "N/A") return;
 
     doc.setTextColor(0, 0, 0);
@@ -110,169 +110,191 @@ export const generateBiodataPDF = async (biodata: any, language: string = "en") 
 
   // PERSONAL INFORMATION
   addSection("PERSONAL INFORMATION");
+  const personal = biodata?.personal as Record<string, unknown> | undefined;
+  const address = biodata?.address as Record<string, unknown> | undefined;
+  const education = biodata?.education as Record<string, unknown> | undefined;
+  const family = biodata?.family as Record<string, unknown> | undefined;
+  const occupation = biodata?.occupation as Record<string, unknown> | undefined;
+  const marriage = biodata?.marriage as Record<string, unknown> | undefined;
+  const preference = biodata?.preference as Record<string, unknown> | undefined;
+
   addField("Name:", biodata?.name);
   addField("Age:", biodata?.age ? `${biodata.age} years` : null);
   addField("Gender:", biodata?.gender);
-  addField("Height:", biodata?.personal?.height);
-  addField("Weight:", biodata?.personal?.weight);
-  addField("Skin Color:", biodata?.personal?.skinColor);
-  addField("Blood Group:", biodata?.personal?.bloodGroup);
-  addField("Marital Status:", biodata?.personal?.maritalStatus);
-  addField("Nationality:", biodata?.address?.country);
+  addField("Height:", personal?.height);
+  addField("Weight:", personal?.weight);
+  addField("Skin Color:", personal?.skinColor);
+  addField("Blood Group:", personal?.bloodGroup);
+  addField("Marital Status:", personal?.maritalStatus);
+  addField("Nationality:", address?.country);
   checkPageBreak();
 
   // ADDRESS
-  if (biodata?.address) {
+  if (address) {
     addSection("ADDRESS");
     
-    if (biodata.address.permanent?.division || biodata.address.permanent?.district || biodata.address.permanent?.upazila) {
-      let permAddress = [];
-      if (biodata.address.permanent?.division) permAddress.push(biodata.address.permanent.division);
-      if (biodata.address.permanent?.district) permAddress.push(biodata.address.permanent.district);
-      if (biodata.address.permanent?.upazila) permAddress.push(biodata.address.permanent.upazila);
-      if (biodata.address.permanent?.address) permAddress.push(biodata.address.permanent.address);
+    const permanent = address?.permanent as Record<string, unknown> | undefined;
+    const present = address?.present as Record<string, unknown> | undefined;
+    
+    if (permanent?.division || permanent?.district || permanent?.upazila) {
+      const permAddress: string[] = [];
+      if (permanent?.division) permAddress.push(String(permanent.division));
+      if (permanent?.district) permAddress.push(String(permanent.district));
+      if (permanent?.upazila) permAddress.push(String(permanent.upazila));
+      if (permanent?.address) permAddress.push(String(permanent.address));
       if (permAddress.length > 0) {
         addField("Permanent Address:", permAddress.join(", "));
       }
     }
     
-    if (biodata.address.present?.division || biodata.address.present?.district || biodata.address.present?.upazila) {
-      let presAddress = [];
-      if (biodata.address.present?.division) presAddress.push(biodata.address.present.division);
-      if (biodata.address.present?.district) presAddress.push(biodata.address.present.district);
-      if (biodata.address.present?.upazila) presAddress.push(biodata.address.present.upazila);
-      if (biodata.address.present?.address) presAddress.push(biodata.address.present.address);
+    if (present?.division || present?.district || present?.upazila) {
+      const presAddress: string[] = [];
+      if (present?.division) presAddress.push(String(present.division));
+      if (present?.district) presAddress.push(String(present.district));
+      if (present?.upazila) presAddress.push(String(present.upazila));
+      if (present?.address) presAddress.push(String(present.address));
       if (presAddress.length > 0) {
         addField("Present Address:", presAddress.join(", "));
       }
     }
     
-    addField("Grew Up At:", biodata.address.grewUpAt);
+    addField("Grew Up At:", address?.grewUpAt);
     checkPageBreak();
   }
 
   // EDUCATION
-  if (biodata?.education) {
+  if (education) {
     addSection("EDUCATION");
-    addField("Method:", biodata.education.method);
+    addField("Method:", education?.method);
     
-    if (biodata.education.history && Array.isArray(biodata.education.history)) {
-      biodata.education.history.forEach((edu: any) => {
-        if (edu.level) {
-          let eduText = edu.level;
-          if (edu.institution) eduText += ` - ${edu.institution}`;
-          if (edu.year) eduText += ` (${edu.year})`;
-          if (edu.group) eduText += ` - ${edu.group}`;
-          if (edu.subject) eduText += ` - ${edu.subject}`;
-          if (edu.result) eduText += ` [${edu.result}]`;
+    const eduHistory = education?.history as unknown[] | undefined;
+    if (eduHistory && Array.isArray(eduHistory)) {
+      eduHistory.forEach((edu: unknown) => {
+        const eduObj = edu as Record<string, unknown>;
+        if (eduObj.level) {
+          let eduText = String(eduObj.level);
+          if (eduObj.institution) eduText += ` - ${String(eduObj.institution)}`;
+          if (eduObj.year) eduText += ` (${String(eduObj.year)})`;
+          if (eduObj.group) eduText += ` - ${String(eduObj.group)}`;
+          if (eduObj.subject) eduText += ` - ${String(eduObj.subject)}`;
+          if (eduObj.result) eduText += ` [${String(eduObj.result)}]`;
           addField("", eduText);
         }
       });
     }
     
-    if (biodata.education.other && Array.isArray(biodata.education.other) && biodata.education.other.length > 0) {
-      addField("Other Education:", biodata.education.other.join(", "));
+    const eduOther = education?.other as unknown[] | undefined;
+    if (eduOther && Array.isArray(eduOther) && eduOther.length > 0) {
+      addField("Other Education:", (eduOther as unknown[]).map(String).join(", "));
     }
     checkPageBreak();
   }
 
   // FAMILY INFORMATION
-  if (biodata?.family) {
+  if (family) {
     addSection("FAMILY INFORMATION");
-    addField("Father Alive:", biodata.family.fatherAlive ? "Yes" : "No");
-    addField("Father's Profession:", biodata.family.fatherProfession);
-    addField("Mother Alive:", biodata.family.motherAlive ? "Yes" : "No");
-    addField("Mother's Profession:", biodata.family.motherProfession);
-    if (biodata.family.brothers > 0) {
-      addField("Brothers:", biodata.family.brothers.toString());
+    addField("Father Alive:", family?.fatherAlive ? "Yes" : "No");
+    addField("Father's Profession:", family?.fatherProfession);
+    addField("Mother Alive:", family?.motherAlive ? "Yes" : "No");
+    addField("Mother's Profession:", family?.motherProfession);
+    if ((family?.brothers as number) > 0) {
+      addField("Brothers:", String(family?.brothers));
     }
-    if (biodata.family.brothersInfo && Array.isArray(biodata.family.brothersInfo) && biodata.family.brothersInfo.length > 0) {
-      addField("Brothers Info:", biodata.family.brothersInfo.join(", "));
+    const brothersInfo = family?.brothersInfo as unknown[] | undefined;
+    if (brothersInfo && Array.isArray(brothersInfo) && brothersInfo.length > 0) {
+      addField("Brothers Info:", brothersInfo.map(String).join(", "));
     }
-    if (biodata.family.sisters > 0) {
-      addField("Sisters:", biodata.family.sisters.toString());
+    if ((family?.sisters as number) > 0) {
+      addField("Sisters:", String(family?.sisters));
     }
-    if (biodata.family.sistersInfo && Array.isArray(biodata.family.sistersInfo) && biodata.family.sistersInfo.length > 0) {
-      addField("Sisters Info:", biodata.family.sistersInfo.join(", "));
+    const sistersInfo = family?.sistersInfo as unknown[] | undefined;
+    if (sistersInfo && Array.isArray(sistersInfo) && sistersInfo.length > 0) {
+      addField("Sisters Info:", sistersInfo.map(String).join(", "));
     }
-    addField("Financial Status:", biodata.family.financialStatus);
-    addField("Financial Details:", biodata.family.financialDetails);
-    addField("Religious Practice:", biodata.family.religiousPractice);
-    addField("Uncles Profession:", biodata.family.unclesProfession?.join(", "));
+    addField("Financial Status:", family?.financialStatus);
+    addField("Financial Details:", family?.financialDetails);
+    addField("Religious Practice:", family?.religiousPractice);
+    const unclesProfession = family?.unclesProfession as unknown[] | undefined;
+    addField("Uncles Profession:", unclesProfession ? unclesProfession.map(String).join(", ") : null);
     checkPageBreak();
   }
 
   // OCCUPATION
-  if (biodata?.occupation) {
+  if (occupation) {
     addSection("OCCUPATION");
-    addField("Current Occupation:", biodata.occupation.current);
-    addField("Description:", biodata.occupation.description);
-    if (biodata.occupation.income?.amount) {
+    addField("Current Occupation:", occupation?.current);
+    addField("Description:", occupation?.description);
+    const income = occupation?.income as Record<string, unknown> | undefined;
+    if (income?.amount) {
       addField(
         "Monthly Income:",
-        `${biodata.occupation.income.amount} ${biodata.occupation.income.currency || "BDT"}`
+        `${income.amount} ${income.currency || "BDT"}`
       );
     }
     checkPageBreak();
   }
 
   // LIFESTYLE & PERSONAL PREFERENCES
-  if (biodata?.personal?.dress || biodata?.personal?.prayerHabit || biodata?.personal?.maintainMahram || 
-      biodata?.personal?.quranReading || biodata?.personal?.fiqh || biodata?.personal?.entertainment || 
-      biodata?.personal?.healthIssues || biodata?.personal?.specialSkills || biodata?.personal?.hobbies?.length || 
-      biodata?.personal?.favoriteBooks?.length) {
+  if (personal?.dress || personal?.prayerHabit || personal?.maintainMahram || 
+      personal?.quranReading || personal?.fiqh || personal?.entertainment || 
+      personal?.healthIssues || personal?.specialSkills || (personal?.hobbies && (personal.hobbies as unknown[]).length) || 
+      (personal?.favoriteBooks && (personal.favoriteBooks as unknown[]).length)) {
     addSection("LIFESTYLE & PREFERENCES");
-    addField("Dress Style:", biodata.personal?.dress);
-    addField("Prayer Habit:", biodata.personal?.prayerHabit);
-    addField("Maintain Mahram:", biodata.personal?.maintainMahram);
-    addField("Quran Reading:", biodata.personal?.quranReading);
-    addField("Fiqh Preference:", biodata.personal?.fiqh);
-    addField("Entertainment Habits:", biodata.personal?.entertainment);
-    addField("Health Issues:", biodata.personal?.healthIssues);
-    addField("Special Skills:", biodata.personal?.specialSkills);
-    if (biodata.personal?.hobbies && Array.isArray(biodata.personal.hobbies) && biodata.personal.hobbies.length > 0) {
-      addField("Hobbies:", biodata.personal.hobbies.join(", "));
+    addField("Dress Style:", personal?.dress);
+    addField("Prayer Habit:", personal?.prayerHabit);
+    addField("Maintain Mahram:", personal?.maintainMahram);
+    addField("Quran Reading:", personal?.quranReading);
+    addField("Fiqh Preference:", personal?.fiqh);
+    addField("Entertainment Habits:", personal?.entertainment);
+    addField("Health Issues:", personal?.healthIssues);
+    addField("Special Skills:", personal?.specialSkills);
+    const hobbies = personal?.hobbies as unknown[] | undefined;
+    if (hobbies && Array.isArray(hobbies) && hobbies.length > 0) {
+      addField("Hobbies:", hobbies.map(String).join(", "));
     }
-    if (biodata.personal?.favoriteBooks && Array.isArray(biodata.personal.favoriteBooks) && biodata.personal.favoriteBooks.length > 0) {
-      addField("Favorite Books:", biodata.personal.favoriteBooks.join(", "));
+    const favoriteBooks = personal?.favoriteBooks as unknown[] | undefined;
+    if (favoriteBooks && Array.isArray(favoriteBooks) && favoriteBooks.length > 0) {
+      addField("Favorite Books:", favoriteBooks.map(String).join(", "));
     }
     checkPageBreak();
   }
 
   // MARRIAGE RELATED
-  if (biodata?.marriage) {
+  if (marriage) {
     addSection("MARRIAGE INFORMATION");
-    addField("Guardians Agree:", biodata.marriage.guardiansAgree ? "Yes" : "No");
-    addField("Study Continuation:", biodata.marriage.studyContinue);
-    addField("Job Status:", biodata.marriage.jobStatus);
-    addField("Reason for Marriage:", biodata.marriage.reason);
+    addField("Guardians Agree:", marriage?.guardiansAgree ? "Yes" : "No");
+    addField("Study Continuation:", marriage?.studyContinue);
+    addField("Job Status:", marriage?.jobStatus);
+    addField("Reason for Marriage:", marriage?.reason);
     checkPageBreak();
   }
 
   // EXPECTED LIFE PARTNER
-  if (biodata?.preference) {
+  if (preference) {
     addSection("EXPECTED LIFE PARTNER PREFERENCES");
-    addField("Age Range:", biodata.preference.ageRange);
-    addField("Complexion:", biodata.preference.complexion);
-    addField("Height:", biodata.preference.height);
-    addField("Education:", biodata.preference.education);
-    addField("Location:", biodata.preference.location);
-    addField("Marital Status:", biodata.preference.maritalStatus);
-    addField("Profession:", biodata.preference.profession);
-    addField("Financial Condition:", biodata.preference.financialCondition);
+    addField("Age Range:", preference?.ageRange);
+    addField("Complexion:", preference?.complexion);
+    addField("Height:", preference?.height);
+    addField("Education:", preference?.education);
+    addField("Location:", preference?.location);
+    addField("Marital Status:", preference?.maritalStatus);
+    addField("Profession:", preference?.profession);
+    addField("Financial Condition:", preference?.financialCondition);
     
-    if (biodata.preference.qualities && Array.isArray(biodata.preference.qualities)) {
-      const qualitiesStr = biodata.preference.qualities.join(", ");
+    const qualities = preference?.qualities as unknown[] | undefined;
+    if (qualities && Array.isArray(qualities)) {
+      const qualitiesStr = qualities.map(String).join(", ");
       addField("Desired Qualities:", qualitiesStr);
     }
     checkPageBreak();
   }
 
   // CONTACT INFORMATION
-  if (biodata?.userId) {
+  const userId = biodata?.userId as Record<string, unknown> | undefined;
+  if (userId) {
     addSection("CONTACT INFORMATION");
-    addField("Email:", biodata.userId?.email);
-    addField("Phone:", biodata.userId?.phone);
+    addField("Email:", userId?.email);
+    addField("Phone:", userId?.phone);
     checkPageBreak();
   }
 
@@ -282,7 +304,7 @@ export const generateBiodataPDF = async (biodata: any, language: string = "en") 
   doc.setFont("helvetica", "normal");
 
   const footerY = pageHeight - 10;
-  const timestamp = new Date().toLocaleDateString();
+  const timestamp = new Date().toLocaleDateString("en-US");
   doc.text(
     `Generated on ${timestamp} | NikahLife Matrimonial Service`,
     pageWidth / 2,

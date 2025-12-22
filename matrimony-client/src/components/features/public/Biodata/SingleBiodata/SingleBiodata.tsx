@@ -161,6 +161,12 @@ export default function Biodata({ id }: { id: string }) {
     }
 
     try {
+      if (!biodata) {
+        toast.error(
+          language === "bn" ? "বায়োডাটা খুঁজে পাওয়া যায়নি" : "Biodata not found"
+        );
+        return;
+      }
       await downloadBiodataAsPDF(biodata);
       toast.success(
         language === "bn"

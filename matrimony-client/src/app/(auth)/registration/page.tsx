@@ -8,7 +8,6 @@ import * as z from "zod";
 import {
   Eye,
   EyeOff,
-  Heart,
   Mail,
   Lock,
   User,

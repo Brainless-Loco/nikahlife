@@ -1,26 +1,10 @@
-import { IBiodata } from "@/types/bioData";
-
 /**
  * Format boolean values to readable strings
  */
-const formatBoolean = (value: any): string => {
+const formatBoolean = (value: boolean | string | undefined): string => {
   if (value === true || value === "yes" || value === "Yes") return "Yes";
   if (value === false || value === "no" || value === "No") return "No";
   return "Not provided";
-};
-
-/**
- * Check if a value is present and not empty/default
- */
-const isValuePresent = (value: any): boolean => {
-  if (!value) return false;
-  if (typeof value === "string") {
-    return value.trim() !== "" && value !== "উত্তর দেয়া হয়নি" && value !== "N/A";
-  }
-  if (typeof value === "number") return value > 0;
-  if (Array.isArray(value)) return value.length > 0;
-  if (typeof value === "boolean") return true;
-  return true;
 };
 
 /**
@@ -37,7 +21,7 @@ const getLogoBase64 = async (): Promise<string> => {
       };
       reader.readAsDataURL(blob);
     });
-  } catch (error) {
+  } catch {
     // Fallback to gradient SVG if logo fails to load
     return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 606 171'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310b981;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ec4899;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='606' height='171' fill='url(%23grad)'/%3E%3Ctext x='303' y='95' font-size='80' font-weight='bold' fill='white' text-anchor='middle' font-family='Arial, sans-serif'%3ENL%3C/text%3E%3C/svg%3E";
   }
@@ -46,7 +30,7 @@ const getLogoBase64 = async (): Promise<string> => {
 /**
  * Download biodata as PDF
  */
-export const downloadBiodataAsPDF = async (biodata: any): Promise<void> => {
+export const downloadBiodataAsPDF = async (biodata: Record<string, unknown>): Promise<void> => {
   try {
     // Dynamically import jsPDF
     const { jsPDF } = await import("jspdf");
@@ -75,7 +59,7 @@ export const downloadBiodataAsPDF = async (biodata: any): Promise<void> => {
       const logoX = (pageWidth - logoWidth) / 2; // Center horizontally
       pdf.addImage(logoBase64, "PNG", logoX, yPosition, logoWidth, logoHeight);
       yPosition += logoHeight + 5;
-    } catch (error) {
+    } catch {
       console.warn("Logo failed to load, continuing without it");
       yPosition += 5;
     }
@@ -150,7 +134,7 @@ export const downloadBiodataAsPDF = async (biodata: any): Promise<void> => {
         const valueText = value && value.trim() ? value : "Not provided";
         const lines = pdf.splitTextToSize(valueText, contentWidth - 55);
         
-        lines.forEach((line, index) => {
+        lines.forEach((line: string, index: number) => {
           pdf.text(line, margin + 55, yPosition + index * 4);
         });
 
@@ -162,139 +146,159 @@ export const downloadBiodataAsPDF = async (biodata: any): Promise<void> => {
 
     // Add Biodata Information Header
     const biodataInfoContent: Array<[string, string]> = [
-      ["Biodata ID", biodata?.biodataNumber || "Not provided"],
-      ["Created Date", biodata?.createdAt ? new Date(biodata.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Not provided"],
+      ["Biodata ID", String(biodata?.biodataNumber || "Not provided")],
+      ["Created Date", biodata?.createdAt ? new Date(String(biodata.createdAt)).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Not provided"],
     ];
     addSection("Biodata Information", biodataInfoContent);
 
     // Add Profile Section
     const profileContent: Array<[string, string]> = [
-      ["Full Name", biodata?.name || "Not provided"],
-      ["Gender", biodata?.gender ? biodata.gender.charAt(0).toUpperCase() + biodata.gender.slice(1) : "Not provided"],
+      ["Full Name", String(biodata?.name || "Not provided")],
+      ["Gender", biodata?.gender ? String(biodata.gender).charAt(0).toUpperCase() + String(biodata.gender).slice(1) : "Not provided"],
       ["Age", biodata?.age ? `${biodata.age} years` : "Not provided"],
-      ["Phone Number", biodata?.phone || "Not provided"],
+      ["Phone Number", String(biodata?.phone || "Not provided")],
     ];
     addSection("Profile Information", profileContent);
 
     // Add Personal Information
+    const personal = biodata?.personal as Record<string, unknown> | undefined;
     const personalInfo: Array<[string, string]> = [
-      ["Height", biodata?.personal?.height || "Not provided"],
-      ["Weight", biodata?.personal?.weight || "Not provided"],
-      ["Skin Color", biodata?.personal?.skinColor || "Not provided"],
-      ["Blood Group", biodata?.personal?.bloodGroup || "Not provided"],
-      ["Marital Status", biodata?.personal?.maritalStatus || "Not provided"],
-      ["Dress Style", biodata?.personal?.dress || "Not provided"],
-      ["Health Issues", biodata?.personal?.healthIssues || "Not provided"],
-      ["Special Skills", biodata?.personal?.specialSkills || "Not provided"],
+      ["Height", String(personal?.height || "Not provided")],
+      ["Weight", String(personal?.weight || "Not provided")],
+      ["Skin Color", String(personal?.skinColor || "Not provided")],
+      ["Blood Group", String(personal?.bloodGroup || "Not provided")],
+      ["Marital Status", String(personal?.maritalStatus || "Not provided")],
+      ["Dress Style", String(personal?.dress || "Not provided")],
+      ["Health Issues", String(personal?.healthIssues || "Not provided")],
+      ["Special Skills", String(personal?.specialSkills || "Not provided")],
     ];
     addSection("Personal Information", personalInfo);
 
     // Add Religious Practices
+    const religious = biodata?.religious as Record<string, unknown> | undefined;
     const religiousInfo: Array<[string, string]> = [
-      ["Prayer Frequency", biodata?.religious?.prayer || "Not provided"],
-      ["Mahram", formatBoolean(biodata?.religious?.mahram)],
-      ["Quran Recitation", formatBoolean(biodata?.religious?.quran)],
-      ["Fiqh Knowledge", biodata?.religious?.fiqh || "Not provided"],
-      ["Entertainment View", biodata?.religious?.entertainment || "Not provided"],
+      ["Prayer Frequency", String(religious?.prayer || "Not provided")],
+      ["Mahram", formatBoolean(religious?.mahram as boolean | string | undefined)],
+      ["Quran Recitation", formatBoolean(religious?.quran as boolean | string | undefined)],
+      ["Fiqh Knowledge", String(religious?.fiqh || "Not provided")],
+      ["Entertainment View", String(religious?.entertainment || "Not provided")],
     ];
     addSection("Religious Practices", religiousInfo);
 
     // Add Hobbies & Interests
+    const hobbies = biodata?.hobbies as Record<string, unknown> | undefined;
     const hobbiesInfo: Array<[string, string]> = [];
+    const hobbiesList = hobbies?.hobbies as unknown[] | undefined;
     hobbiesInfo.push([
       "Hobbies",
-      Array.isArray(biodata?.hobbies?.hobbies) && biodata.hobbies.hobbies.length > 0
-        ? biodata.hobbies.hobbies.join(", ")
+      Array.isArray(hobbiesList) && hobbiesList.length > 0
+        ? hobbiesList.map(String).join(", ")
         : "Not provided",
     ]);
+    const booksList = hobbies?.books as unknown[] | undefined;
     hobbiesInfo.push([
       "Books",
-      Array.isArray(biodata?.hobbies?.books) && biodata.hobbies.books.length > 0
-        ? biodata.hobbies.books.join(", ")
+      Array.isArray(booksList) && booksList.length > 0
+        ? booksList.map(String).join(", ")
         : "Not provided",
     ]);
+    const qualitiesList = hobbies?.qualities as unknown[] | undefined;
     hobbiesInfo.push([
       "Qualities",
-      Array.isArray(biodata?.hobbies?.qualities) && biodata.hobbies.qualities.length > 0
-        ? biodata.hobbies.qualities.join(", ")
+      Array.isArray(qualitiesList) && qualitiesList.length > 0
+        ? qualitiesList.map(String).join(", ")
         : "Not provided",
     ]);
     addSection("Interests & Hobbies", hobbiesInfo);
 
     // Add Address
+    const address = biodata?.address as Record<string, unknown> | undefined;
+    const present = address?.present as Record<string, unknown> | undefined;
+    const permanent = address?.permanent as Record<string, unknown> | undefined;
     const addressInfo: Array<[string, string]> = [
-      ["Country", biodata?.address?.country || "Not provided"],
-      ["Grew Up At", biodata?.address?.grewUpAt || "Not provided"],
-      ["Present Address", biodata?.address?.present?.address || "Not provided"],
-      ["Permanent Address", biodata?.address?.permanent?.address || "Not provided"],
+      ["Country", String(address?.country || "Not provided")],
+      ["Grew Up At", String(address?.grewUpAt || "Not provided")],
+      ["Present Address", String(present?.address || "Not provided")],
+      ["Permanent Address", String(permanent?.address || "Not provided")],
     ];
     addSection("Address Information", addressInfo);
 
     // Add Education
+    const education = biodata?.education as Record<string, unknown> | undefined;
     const eduInfo: Array<[string, string]> = [
-      ["Education Method", biodata?.education?.method || "Not provided"],
+      ["Education Method", String(education?.method || "Not provided")],
     ];
-    if (Array.isArray(biodata?.education?.history) && biodata.education.history.length > 0) {
-      const eduHistory = biodata.education.history
-        .map((e: any) => `${e.level || "N/A"} from ${e.institution || "N/A"} (${e.year || "N/A"})`)
+    const eduHistory = education?.history as unknown[] | undefined;
+    if (Array.isArray(eduHistory) && eduHistory.length > 0) {
+      const eduHistoryStr = eduHistory
+        .map((e: unknown) => {
+          const edu = e as Record<string, unknown>;
+          return `${edu.level || "N/A"} from ${edu.institution || "N/A"} (${edu.year || "N/A"})`;
+        })
         .join(" | ");
-      eduInfo.push(["Education History", eduHistory]);
+      eduInfo.push(["Education History", eduHistoryStr]);
     } else {
       eduInfo.push(["Education History", "Not provided"]);
     }
     addSection("Education", eduInfo);
 
     // Add Family Information
+    const family = biodata?.family as Record<string, unknown> | undefined;
     const familyInfo: Array<[string, string]> = [
-      ["Father Alive", formatBoolean(biodata?.family?.fatherAlive)],
-      ["Mother Alive", formatBoolean(biodata?.family?.motherAlive)],
-      ["Father Profession", biodata?.family?.fatherProfession || "Not provided"],
-      ["Mother Profession", biodata?.family?.motherProfession || "Not provided"],
-      ["Number of Brothers", biodata?.family?.brothers ? String(biodata.family.brothers) : "Not provided"],
-      ["Number of Sisters", biodata?.family?.sisters ? String(biodata.family.sisters) : "Not provided"],
-      ["Financial Status", biodata?.family?.financialStatus || "Not provided"],
-      ["Religious Practice", biodata?.family?.religiousPractice || "Not provided"],
+      ["Father Alive", formatBoolean(family?.fatherAlive as boolean | string | undefined)],
+      ["Mother Alive", formatBoolean(family?.motherAlive as boolean | string | undefined)],
+      ["Father Profession", String(family?.fatherProfession || "Not provided")],
+      ["Mother Profession", String(family?.motherProfession || "Not provided")],
+      ["Number of Brothers", family?.brothers ? String(family.brothers) : "Not provided"],
+      ["Number of Sisters", family?.sisters ? String(family.sisters) : "Not provided"],
+      ["Financial Status", String(family?.financialStatus || "Not provided")],
+      ["Religious Practice", String(family?.religiousPractice || "Not provided")],
     ];
     addSection("Family Information", familyInfo);
 
     // Add Occupation
+    const occupation = biodata?.occupation as Record<string, unknown> | undefined;
     const occupationInfo: Array<[string, string]> = [
-      ["Current Job", biodata?.occupation?.currentJob || "Not provided"],
-      ["Description", biodata?.occupation?.description || "Not provided"],
-      ["Monthly Income", biodata?.occupation?.income || "Not provided"],
+      ["Current Job", String(occupation?.currentJob || "Not provided")],
+      ["Description", String(occupation?.description || "Not provided")],
+      ["Monthly Income", String(occupation?.income || "Not provided")],
     ];
     addSection("Occupation", occupationInfo);
 
     // Add Marriage Expectations
+    const marriage = biodata?.marriage as Record<string, unknown> | undefined;
     const marriageInfo: Array<[string, string]> = [
-      ["Guardians Agree", formatBoolean(biodata?.marriage?.guardiansAgree)],
-      ["Study Continuation", biodata?.marriage?.studyContinuation || "Not provided"],
-      ["Job Status", biodata?.marriage?.jobStatus || "Not provided"],
-      ["Reason for Marriage", biodata?.marriage?.reason || "Not provided"],
+      ["Guardians Agree", formatBoolean(marriage?.guardiansAgree as boolean | string | undefined)],
+      ["Study Continuation", String(marriage?.studyContinuation || "Not provided")],
+      ["Job Status", String(marriage?.jobStatus || "Not provided")],
+      ["Reason for Marriage", String(marriage?.reason || "Not provided")],
     ];
     addSection("Marriage Expectations", marriageInfo);
 
     // Add Preferences
+    const preferences = biodata?.preferences as Record<string, unknown> | undefined;
     const preferencesInfo: Array<[string, string]> = [
-      ["Preferred Age Range", biodata?.preferences?.ageRange || "Not provided"],
-      ["Preferred Complexion", biodata?.preferences?.complexion || "Not provided"],
-      ["Preferred Height", biodata?.preferences?.height || "Not provided"],
-      ["Preferred Education", biodata?.preferences?.education || "Not provided"],
-      ["Preferred Location", biodata?.preferences?.location || "Not provided"],
-      ["Preferred Profession", biodata?.preferences?.profession || "Not provided"],
-      ["Preferred Financial Condition", biodata?.preferences?.financialCondition || "Not provided"],
+      ["Preferred Age Range", String(preferences?.ageRange || "Not provided")],
+      ["Preferred Complexion", String(preferences?.complexion || "Not provided")],
+      ["Preferred Height", String(preferences?.height || "Not provided")],
+      ["Preferred Education", String(preferences?.education || "Not provided")],
+      ["Preferred Location", String(preferences?.location || "Not provided")],
+      ["Preferred Profession", String(preferences?.profession || "Not provided")],
+      ["Preferred Financial Condition", String(preferences?.financialCondition || "Not provided")],
     ];
-    if (Array.isArray(biodata?.preferences?.qualities) && biodata.preferences.qualities.length > 0) {
-      preferencesInfo.push(["Desired Qualities", biodata.preferences.qualities.join(", ")]);
+    const qualities = preferences?.qualities as unknown[] | undefined;
+    if (Array.isArray(qualities) && qualities.length > 0) {
+      preferencesInfo.push(["Desired Qualities", qualities.map(String).join(", ")]);
     } else {
       preferencesInfo.push(["Desired Qualities", "Not provided"]);
     }
     addSection("Preferences", preferencesInfo);
 
     // Add Contact Information
+    const contact = biodata?.contact as Record<string, unknown> | undefined;
     const contactInfo: Array<[string, string]> = [
-      ["Guardian Phone", biodata?.contact?.guardianPhone || "Not provided"],
-      ["Relation", biodata?.contact?.relation || "Not provided"],
+      ["Guardian Phone", String(contact?.guardianPhone || "Not provided")],
+      ["Relation", String(contact?.relation || "Not provided")],
     ];
     addSection("Contact Information", contactInfo);
 
