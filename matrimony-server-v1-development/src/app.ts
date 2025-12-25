@@ -1,5 +1,5 @@
 import cookieParser from "cookie-parser";
-import cors from "cors";
+import cors, { CorsOptions } from "cors";
 import passport from "passport";
 import express, { Request, Response } from "express";
 import expressSession from "express-session";
@@ -14,20 +14,62 @@ const app = express();
 // Vercel er jonno trust proxy
 app.set("trust proxy", 1);
 
-// CORS setup
-app.use(cors({
-  origin: [
-    "https://www.nikahlife.com",
-    "https://nikahlife.vercel.app",
-    "https://nikah-test.vercel.app", 
-    "http://localhost:3000",
-    "http://localhost:5173",
-    // '*'
-  ],
+const staticAllowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://matrimony-client-henna.vercel.app",
+  "https://www.nikahlife.com",
+  "https://nikahlife.vercel.app",
+];
+
+const envAllowedOrigins = (process.env.ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+const allowedOrigins = new Set<string>([...staticAllowedOrigins, ...envAllowedOrigins]);
+
+const corsOptions: CorsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.has(origin)) {
+      return callback(null, true);
+    }
+
+    try {
+      const { hostname, protocol } = new URL(origin);
+      if (protocol === "https:" && hostname.endsWith(".vercel.app")) {
+        return callback(null, true);
+      }
+    } catch (error) {
+      console.warn("Invalid origin header received", origin, error);
+      return callback(error as Error, false);
+    }
+
+    console.warn("CORS origin blocked", origin);
+    return callback(null, false);
+  },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization", "Cookie"]
-}));
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Cookie",
+    "Accept",
+    "X-Requested-With",
+    "Origin",
+  ],
+  exposedHeaders: ["Content-Length", "X-JSON-Response"],
+  maxAge: 3600,
+  optionsSuccessStatus: 200,
+};
+
+// CORS setup - Allow specific origins with credentials
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // Cookie parser
 app.use(cookieParser());
